@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Catálogo</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Conócenos</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <link href="css/estiloProductos.css" rel="stylesheet" type="text/css">
 <link href="../font.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css"
-	integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous">
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/jquery.cycle.all.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
+<script src="js/HOME.js"></script>
 
 
-<body background="fondo/azul.jpg">
+<body background="fondo/azul.jpg">  
+
 
 	<div id="contenedor">
 		<header>
 			<div id="baner" style="max-width: 100%; min-width: 100%">
-				<img src="logo/banner1.jpg" alt="" />
-				<img src="logo/banner2.jpg" alt="" />
+				<img src="logo/banner1.jpg" alt="" /> 
+				<img src="logo/banner2.jpg" alt="" /> 
 				<img src="logo/banner3.jpg" alt="" />
 				<img src="logo/banner4.jpg" alt="" />
 			</div>
 		</header>
 
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="/index">ELECTRO</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -132,61 +142,41 @@
 				</ul>
 			</div>
 		</nav>
-
-		<br>
-		<br>
-		<section>
-
-			<div class="container" style="background-color:white;">
+		
+			<section>
+				<br> <br>
+				<h1 style="color:blue;margin-left:10%;margin-right: 10%">¿Quiénes Somos?</h1>
 				<br>
-				<h1>Lo que necesite al mejor precio</h1>
+				<p style="font-size:15pt;margin-left:10%;margin-right: 10%;color: olive;">Es una empresa Peruana, dedicada a la comercialización de productos de tecnología de alta Gama,
+				 de las mejores Marcas, de prestigio mundial, como Computadoras, Laptops, Partes de Computadoras, 
+				 Accesorios y Suministros para clientes finales y distribuidores; 
+				 marcando tendencia tecnológica.
+				 El mayor valor agregado que transmite a sus clientes es la seguridad en su compra, el cliente en MundoTronic compra Calidad, Seguridad y Tranquilidad 
+				 y sabe que puede darle un uso Extremo a sus  equipos, Los cuales cuentan con una sólida garantía </p>
 				<br>
-				<!--
-				<c:forEach items="${milista }" var="x">
-					<figure style="border: 5px groove #E6E6FA;border-radius:6px;">
-						<a href="SPro?btnes=b&cod=${x.codigo }">
-							<img src="imgPro/${x.codigo }.jpg" height="150px" width="150px" alt="${x.nombre }">
-						</a>
-						<a style="background-color:#FFF8DC;padding:10px 20px;text-decoration:none;"
-							href="SPro?btnes=b&cod=${x.codigo }">${x.nombre }</a>
-						<p style="color:darkblue;">S/. ${x.precio }0</p>
-					</figure>
-				</c:forEach>
-				-->
-				<table>
-				<th:block >
-					<figure style="border: 5px groove #E6E6FA;border-radius:6px;"   th:each="pro : ${productos}">
-						<a href="#">
-							<img th:src="@{${'/imgPro/'+pro.codigoProducto+'.jpg'}}" height="150px" width="150px" alt="" >
-						</a>
-						<a th:text="${pro.nombreProducto}" style="background-color:#FFF8DC;padding:10px 20px;text-decoration:none;"
-							href="#" ></a>
-						<p th:text="${pro.precioProducto }" style="color:darkblue;"  ></p>
-					</figure>
-				</th:block>
-				</table>
-				<!--  </table>-->
-			</div>
-		</section>
+				<h1 style="color:blue;margin-left:10%;margin-right: 10%">¿Cuál es nuestra misión?</h1>
+				<br>
+				<p style="font-size:15pt;margin-left:10%;margin-right: 10%; color: olive;">Ser Lideres en el mercado de artículos de tecnologia en el Perú, otorgando el mayor grado de satisfacción
+				 a nuestros clientes a través de una asesoría especializada y cercana, ofreciendo la más amplia variedad de productos y 
+				 los precios más competitivos.
+				 
+	           Este éxito se debe en gran medida a la lealtad de nuestros clientes, quienes por medio de su confianza han hecho posible el cumplimiento de las metas de crecimiento en forma sostenida.</p>
+				<br>
+				<h1 style="color:blue;margin-left:10%;margin-right: 10%">¿Cómo comunicarnos?</h1>
+				<br>
+				<p style="font-size:15pt;margin-left:10%;margin-right: 10%; color: olive;">Puedes comunicarnos a través de facebook, Buscanos como MundoTronic - PERU  </p>
+				<br> <br>
+				
+				<br>
+				<br>
+				<p style="font-size:8pt;margin-left:45%;margin-right: 10%;color:gray">El que persevera alcanza el éxito...</p>
+				<br>
+			</section>
 		<footer>
 			<p>SIEMPRE A LA DISPOSICION DE NUESTRO PUBLICO</p>
 			<p></p>
-
+			
 		</footer>
-
 	</div>
-
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-	<script src="js/jquery-3.2.1.js"></script>
-	<script src="js/jquery.cycle.all.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
-	<script src="js/Productos.js"></script>
-
-
 </body>
-
 </html>

@@ -40,4 +40,15 @@ public class IndexController {
 		return "index";
 	}
 	
+	
+	@GetMapping("/conocenos")
+	public String conocenos() {
+		//logica 
+		
+		
+		return "conocenos";
+	}
+	
+	
+	
 }
