@@ -40,7 +40,7 @@ public class IndexController {
 		return "index";
 	}
 	
-	
+	//CONOCENOS
 	@GetMapping("/conocenos")
 	public String conocenos() {
 		//logica 
@@ -49,6 +49,25 @@ public class IndexController {
 		return "conocenos";
 	}
 	
+	//LOGIN DE USUARIOS
+	@GetMapping("/loginUsuairos")
+	public String login() {
+		//logica 
+		
+		
+		return "login";
+	}
+	
+	
+	//REGISTRO DE USUARIOS
+	@GetMapping("/registroCliente")
+	public String registroCliente() {
+		//logica 
+		
+		
+		return "registroCliente";
+	}
+	//LOGIN DE ADMINISTRADORES
 	
 	
 }

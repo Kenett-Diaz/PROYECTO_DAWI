@@ -1,12 +1,14 @@
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Conócenos</title>
+<title>Registro Clientes</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
-<link href="css/estiloProductos.css" rel="stylesheet" type="text/css">
+
+<link href="css/estiloHome.css" rel="stylesheet" type="text/css">
 <link href="../font.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="js/jquery-3.2.1.js"></script>
@@ -22,20 +24,20 @@
 <script src="js/HOME.js"></script>
 
 
-<body background="fondo/azul.jpg">  
+<body background="fondo/azul.jpg">
 
 
 	<div id="contenedor">
-		<header>
+	<header>
 			<div id="baner" style="max-width: 100%; min-width: 100%">
-				<img src="logo/banner1.jpg" alt="" /> 
-				<img src="logo/banner2.jpg" alt="" /> 
+				<img src="logo/banner1.jpg" alt="" />
+				<img src="logo/banner2.jpg" alt="" />
 				<img src="logo/banner3.jpg" alt="" />
 				<img src="logo/banner4.jpg" alt="" />
 			</div>
 		</header>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="/index">ELECTRO</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -142,41 +144,117 @@
 				</ul>
 			</div>
 		</nav>
-		
-			<section>
-				<br> <br>
-				<h1 style="color:blue;margin-left:10%;margin-right: 10%">¿Quiénes Somos?</h1>
-				<br>
-				<p style="font-size:15pt;margin-left:10%;margin-right: 10%;color: olive;">Es una empresa Peruana, dedicada a la comercialización de productos de tecnología de alta Gama,
-				 de las mejores Marcas, de prestigio mundial, como Computadoras, Laptops, Partes de Computadoras, 
-				 Accesorios y Suministros para clientes finales y distribuidores; 
-				 marcando tendencia tecnológica.
-				 El mayor valor agregado que transmite a sus clientes es la seguridad en su compra, el cliente en MundoTronic compra Calidad, Seguridad y Tranquilidad 
-				 y sabe que puede darle un uso Extremo a sus  equipos, Los cuales cuentan con una sólida garantía </p>
-				<br>
-				<h1 style="color:blue;margin-left:10%;margin-right: 10%">¿Cuál es nuestra misión?</h1>
-				<br>
-				<p style="font-size:15pt;margin-left:10%;margin-right: 10%; color: olive;">Ser Lideres en el mercado de artículos de tecnologia en el Perú, otorgando el mayor grado de satisfacción
-				 a nuestros clientes a través de una asesoría especializada y cercana, ofreciendo la más amplia variedad de productos y 
-				 los precios más competitivos.
-				 
-	           Este éxito se debe en gran medida a la lealtad de nuestros clientes, quienes por medio de su confianza han hecho posible el cumplimiento de las metas de crecimiento en forma sostenida.</p>
-				<br>
-				<h1 style="color:blue;margin-left:10%;margin-right: 10%">¿Cómo comunicarnos?</h1>
-				<br>
-				<p style="font-size:15pt;margin-left:10%;margin-right: 10%; color: olive;">Puedes comunicarnos a través de facebook, Buscanos como MundoTronic - PERU  </p>
-				<br> <br>
-				
-				<br>
-				<br>
-				<p style="font-size:8pt;margin-left:45%;margin-right: 10%;color:gray">El que persevera alcanza el éxito...</p>
-				<br>
-			</section>
-		<footer>
-			<p>SIEMPRE A LA DISPOSICION DE NUESTRO PUBLICO</p>
-			<p></p>
-			
-		</footer>
+
+
+		<section>
+			<div style="background-color: white; margin-left: 25%; width: 50%;">
+
+				<h1
+					style="margin-right: 200px; margin-bottom: 50px; font-family: Impact; font-size: 50px; color: #1F89E6; font-style: normal;">REGISTRO
+					DE CLIENTES</h1>
+				<form action="SCli" method="post">
+					<div style="margin: 10px; width: 200px; top: 0px; right: 0px;"
+						class="form-group">
+						<label for="exampleInputFecha">Nro. Documento : </label> <input
+							type="text" class="form-control" id="documento"
+							placeholder="(DNI./PTE.)" name="txtDocumento"
+							pattern="[A-Za-Z0-9]{8,10}" maxlength="10">
+					</div>
+
+					<div
+						style="margin: 10px; width: 250px; top: 0px; right: 0px; float: left"
+						class="form-group">
+						<label for="exampleInputFecha">Nombre(s) .</label> <input
+							type="text" class="form-control" id="nombre"
+							placeholder="Ingrese su Nombre" name="txtNombre" maxlength="30">
+					</div>
+
+					<div
+						style="margin: 10px; width: 250px; top: 0px; right: 0px; float: left"
+						class="form-group">
+						<label for="exampleInputFecha">Apellidos :</label> <input
+							type="text" class="form-control" id="apellidos"
+							placeholder="Ingrese su apellido" name="txtApellido"
+							maxlength="30">
+					</div>
+
+					<div
+						style="margin: 10px; width: 320px; top: 0px; right: 0px; float: left"
+						class="form-group">
+						<label for="exampleInputFecha">Dirección :</label> <input
+							type="text" class="form-control" id="fecha"
+							placeholder="Ingrese su direccion" name="txtDireccion"
+							maxlength="100">
+					</div>
+					<div
+						style="margin: 10px; width: 200px; top: 0px; right: 0px; float: left"
+						class="form-group">
+						<div class="col-auto my-1">
+							<label for="Distrito">Distrito :</label> <select
+								class="form-control" name="cboDistrito">
+								<ct:llenaDistritos />
+
+							</select>
+						</div>
+					</div>
+
+					<div
+						style="margin: 10px; width: 250px; top: 0px; right: 0px; float: left"
+						class="form-group">
+						<label for="Fijo">Teléfono Fijo :</label> <input type="number"
+							class="form-control" id="fijo" placeholder="Ingrese su telefono"
+							name="txtFijo" pattern="[0-9]{9}" maxlength="9">
+					</div>
+
+					<div
+						style="margin: 10px; width: 250px; top: 0px; right: 0px; float: left"
+						class="form-group">
+						<label for="exampleInputFecha">Celular :</label> <input
+							type="number" class="form-control" id="celular"
+							placeholder="Ingrese su Celular" name="txtCelular"
+							pattern="[0-9]{9}" maxlength="9">
+					</div>
+
+					<div
+						style="margin: 10px; width: 520px; top: 0px; right: 0px; float: left"
+						class="form-group">
+						<label for="exampleInputFecha">Correo personal :</label> <input
+							type="email" class="form-control" id="fecha"
+							placeholder="Ingrese su Correo" name="txtCorreo" maxlength="50">
+					</div>
+
+					<div
+						style="padding-bottom: 38px; margin: 10px; width: 520px; top: 0px; right: 0px; float: left"
+						class="form-group">
+						<label for="contraseña">Contraseña :</label> <input
+							type="password" class="form-control" id="clave"
+							placeholder="Ingrese su contraseña" name="txtClave"
+							maxlength="15">
+					</div>
+
+
+					<br>
+					<p>${mensaje}</p>
+
+					<div>
+							<button style="margin:10px 10px 50px 170px;width:200px;float:left" type="submit" class="btn btn-primary" name="btnes" value="rr">Registrar</button>
+						
+						 <br>
+   						 <p style="margin-left:70px;margin-top:530px">Si ya se encuentra registrado, clic <a href="/loginUsuairos">aquí</a> para Iniciar Sesión</p>
+    					 <br>
+						
+					</div>
+
+				</form>
+
+			</div>
+		</section>
+
+
+
+
 	</div>
+
 </body>
+
 </html>
