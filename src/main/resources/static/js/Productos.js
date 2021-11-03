@@ -13,7 +13,7 @@ function direccionar(n){
 $(document).ready(function(){
 	 $(window).scroll(function(){     
         //scroll-up
-        if(this.scrollY > 450){
+        if(this.scrollY > 450 && this.scrollY < 2400){
             $('.scroll-up-btn').addClass("show");
         }else{
             $('.scroll-up-btn').removeClass("show");

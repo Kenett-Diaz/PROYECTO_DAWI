@@ -106,9 +106,9 @@ ul li a{
 }
 nav ul li .xd{
 	position: relative;
-	left:55px;
+	left:65px;
 	padding: 0 20px;	
-	margin-right: 30px;
+	margin-right: 52px;
 	
 }
 
@@ -244,31 +244,9 @@ section figure a:hover{
 }
 
 /*  footer  */
-footer {
-	padding: 42px;
-	text-align: center;
-	background-color: black;
-}
-footer p {
-	font-size: 140%;
-	margin-top: 5px;
-	color: white;
-}
-footer pre{
-	margin-top: 10px;
-	text-align: right;
-	color:white;
-	float: right;
-	display: flex;
-}
-footer img{
-	border-radius:5px;
-	float:right;
-	display: flex;
-}
-footer img:hover{
-	border-radius: 10px;
-}
+
+
+
 
 /**/
 .dedo{

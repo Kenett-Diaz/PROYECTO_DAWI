@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
+import com.electro.models.Administrador;
 import com.electro.repository.IProductoRepository;
 
 import org.springframework.ui.Model;
@@ -67,14 +67,6 @@ public class IndexController {
 		
 		return "registroCliente";
 	}
-	//LOGIN DE ADMINISTRADORES
 	
-	@GetMapping("/loginAdministrador")
-	public String loginAdministrador() {
-		//logica 
-		
-		
-		return "loginAdministrador";
-	}
 	
 }

@@ -57,14 +57,14 @@ nav>li{
 	text-decoration: none;
 	color: white;
 	margin-left: 10px;
-}
+}/*
 nav>li.1{
 	float:left;
 	background-color: black;
 	color: white;
 	text-decoration: none;
 	margin-left: 25%;
-}
+}*/
 nav li a{
 	padding: 10px 20px;
 	text-decoration: none;

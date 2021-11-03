@@ -10,23 +10,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.electro.models.Administrador;
 import com.electro.repository.IAdministradorRepository;
+import com.electro.repository.IProductoRepository;
 
 @Controller
-@RequestMapping(path="/logadm")
 public class AdministradorController {
 	
 	
 	@Autowired
 	private IAdministradorRepository repoadm;
+	@Autowired
+	private IProductoRepository prod;
 	
-	@GetMapping("/cargar")
-	public String cargarPag(Model model) {
-		model.addAttribute("administrador", new Administrador());
-		
-		return "loginAdministrador";
-	}
+	//LOGIN DE ADMINISTRADORES
 	
-	@PostMapping("/validar")
+		@GetMapping("/loginAdministrador")
+		public String loginAdministrador(Model model) {
+			model.addAttribute("administrador", new Administrador());
+			//logica 
+
+			return "loginAdministrador";
+		}
+	@PostMapping("/validarAdministrador")
 	public String grabarPag(@ModelAttribute Administrador administrador, Model model) {
 		
 		System.out.println(administrador);
@@ -41,7 +45,7 @@ public class AdministradorController {
 			return "loginAdministrador";
 		}else {
 			model.addAttribute("Usuario", adm);
-			
+			model.addAttribute("productos", prod.findAll());
 			return "index";
 		}
 		

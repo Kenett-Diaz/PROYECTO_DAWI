@@ -139,7 +139,7 @@
 
 							<a class="dropdown-item" href="/loginUsuairos">Cliente</a> 
 							<a class="dropdown-item"
-								href="/logadm/cargar">Administrador</a>
+								href="/loginAdministrador">Administrador</a>
 
 
 						</div>
@@ -176,7 +176,7 @@
 				<th:block >
 					<figure style="border: 5px groove #E6E6FA;border-radius:6px;"   th:each="pro : ${productos}">
 						<a href="#">
-							<img th:src="@{${'/imgPro/'+pro.codigoProducto+'.jpg'}}" height="150px" width="150px" alt="" >
+							<img th:src="@{${'/imgPro/'+pro.codigoProducto+'.jpg'}}" height="150px" width="150px" alt="productos" >
 						</a>
 						<a th:text="${pro.nombreProducto}" style="background-color:#FFF8DC;padding:10px 20px;text-decoration:none;"
 							href="#" ></a>
@@ -187,14 +187,15 @@
 				<!--  </table>-->
 			</div>
 		</section>
-		<footer>
-			<p>SIEMPRE A LA DISPOSICION DE NUESTRO PUBLICO</p>
-			<p></p>
-
+		
+		<footer style=" display:flex; background: #111;
+    padding:40px;
+    color: #fff;text-align: center; justify-content: center;">
+		    <span>SIEMPRE A LA DISPOSICION DE NUESTRO PUBLICO | <span class="fas fa copyright" style="color:#fff"></span>2021 Todos los derechos reservados.</span>
 		</footer>
 
 	</div>
-
+		
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="js/jquery-3.2.1.js"></script>
 	<script src="js/jquery.cycle.all.js"></script>
