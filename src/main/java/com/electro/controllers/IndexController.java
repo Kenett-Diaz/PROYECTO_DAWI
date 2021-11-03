@@ -50,7 +50,7 @@ public class IndexController {
 	}
 	
 	//LOGIN DE USUARIOS
-	@GetMapping("/loginUsuairos")
+	@GetMapping("/loginUsuarios")
 	public String login() {
 		//logica 
 		
