@@ -1,0 +1,429 @@
+/*boorar BD en caso exista*/
+DROP DATABASE IF EXISTS MUNDOTRONIC_PERU;
+
+-- creamos la bd
+CREATE DATABASE MUNDOTRONIC_PERU;
+
+-- activamos la bd
+USE MUNDOTRONIC_PERU;
+
+CREATE TABLE DISTRITO (
+  cod_dist 			int 		auto_increment	NOT NULL,
+  nom_dist 			VARCHAR(50) 	NOT NULL,
+  PRIMARY KEY (cod_dist)
+  );
+  
+  
+  /*insert DISTRITO*/
+insert into DISTRITO VALUES(1, 'Los Olivos');
+insert into DISTRITO VALUES(2, 'Miraflores');
+insert into DISTRITO VALUES(3, 'Barranco');
+insert into DISTRITO VALUES(4, 'San Isidro');
+insert into DISTRITO VALUES(5, 'Chorrillos');
+insert into DISTRITO VALUES(6, 'Santiago Surco');
+insert into DISTRITO VALUES(7, 'San Juan Miraflores');
+insert into DISTRITO VALUES(8, 'San Borja');
+insert into DISTRITO VALUES(9, 'Villa el Salvador');
+insert into DISTRITO VALUES(10, 'Villa Maria');
+insert into DISTRITO VALUES(11, 'Puente Piedra');
+insert into DISTRITO VALUES(12, 'Callao');
+insert into DISTRITO VALUES(13, 'Barranco');
+insert into DISTRITO VALUES(14, 'Lurin');
+insert into DISTRITO VALUES(15, 'San Bartolo');
+insert into DISTRITO VALUES(16, 'Pucusana');
+insert into DISTRITO VALUES(17, 'Chosica');
+insert into DISTRITO VALUES(18, 'Chilca');
+insert into DISTRITO VALUES(19, 'La Molina');
+insert into DISTRITO VALUES(20, 'Ate');
+  
+ select * from distrito; 
+  
+  
+CREATE TABLE CARGO (
+ID_cargo 			CHAR(3) 		NOT NULL,
+NOM_CARGO 			VARCHAR(30)		NOT NULL,
+CONSTRAINT PK_ID_CARGO PRIMARY KEY (id_cargo)
+);
+
+insert into CARGO VALUES ('1','Secretaria');
+insert into CARGO VALUES ('2','Jefe de Mantenimiento');
+insert into CARGO VALUES ('3', 'Repartidor');
+insert into CARGO VALUES ('4', 'Contador');
+insert into CARGO VALUES ('5', 'Administrador');
+
+  
+  CREATE TABLE CLIENTE (
+  cod_cli 			CHAR(7) 		NOT NULL,
+  DNI_cli 			char(8) 		NOT NULL 		unique,
+  nom_cli 			VARCHAR(30) 	NOT NULL,
+  ape_cli 			VARCHAR(30) 	NOT NULL,
+  direc_cli	 		VARCHAR(100) 	NOT NULL,
+  cod_dist 			int 			NOT NULL,
+  cel_cli 			char(9) 		NOT NULL 		UNIQUE,
+  fijo_cli 			char(9) 		  	null		unique,
+  email_cli 		VARCHAR(50) 	NOT NULL 		unique,
+  clave_cli 		VARCHAR(15) 	NOT NULL		unique,
+  PRIMARY KEY (cod_cli),
+  constraint FK_CLIENTE_DISTRITO foreign key (cod_dist) REFERENCES DISTRITO (cod_dist)
+  );
+  
+  select  c.cod_cli, c.DNI_cli, c.nom_cli, c.ape_cli,c.direc_cli,d.nom_dist,c.cel_cli,c.fijo_cli,c.email_cli
+  from cliente c join distrito d
+  on c.cod_dist= d.cod_dist
+  where  nom_cli  like  '%' '%silvia%' '%';
+  select * from cliente;
+  
+  /*funciones para  generar el codigo cliente*/
+DELIMITER $
+  create function genera_cliente() returns char(7) deterministic
+  begin
+	 Declare 	cod 	char(7);
+     declare 	n 		int;
+     declare 	aux 	varchar(7);
+     if not exists(select*from CLIENTE) then
+     set cod='C000001';
+     else
+         begin
+         set n=(select convert(Max(right(cod_cli,2)), signed integer) from CLIENTE)+1;
+         set aux=(convert(n, character));
+         set cod= concat('C',repeat('0',6-length(aux)),aux);
+         end;
+        end if;
+        return cod;
+    end $ 
+  
+  insert into CLIENTE VALUES ('C000001','78459658', 'Diana', 'Rodriguez',
+  'Calle Río de Jaineiro',20, '912254689', '012456854','Diana@gmail.com','diana123');
+   insert into CLIENTE VALUES ('C000002','71256448', 'Silvia', 'Timoteo',
+  'Av. Los Claveles',5, '954123658', '015418459','Silvia@gmail.com','silvia123');
+  select * from cliente;
+  
+  
+  create TABLE ADMINISTRADOR (
+  ID_admi 			CHAR(6) 		NOT NULL,
+  nom_admi 			VARCHAR(45) 	NOT NULL,
+  apePat_admi 		VARCHAR(25) 	NOT NULL,
+  apeMat_admi 		VARCHAR(20) 	NOT NULL,
+  DNI_admi 			char(8) 		NOT NULL 		unique,
+  fechNac_admi 		DATE 			NOT NULL,
+  dir_admi 			VARCHAR(100) 	NOT NULL,
+  cod_dist 			int 			NOT NULL,
+  fijo_admi 		char(9) 		    null 		unique,
+  cel_admi 			char(9) 		not null 		unique,
+  email_admi 		VARCHAR(80) 	not null 		unique,
+  usuario_admi 		CHAR(10) 		NOT NULL 		unique,
+  clave_admi 		VARCHAR(15) 	NOT NULL,
+  ID_cargo 			CHAR(1) 		DEFAULT '2',
+  fech_contrato 	DATE 			NOT NULL,
+  sueldo 			DECIMAL(10,2) 	DEFAULT 930.00,
+  PRIMARY KEY (ID_admi),
+  constraint FK_ADMI_DISTRITO FOREIGN KEY (cod_dist) REFERENCES DISTRITO (cod_dist),
+  constraint FK_ADMI_CARGO foreign key (ID_cargo) references CARGO (ID_cargo)
+  );
+  
+  DELIMITER $
+  create function genera_admi() returns char(6) deterministic
+  begin
+	Declare cod char(6);
+     declare n int;
+     declare aux varchar(6);
+     if not exists(select*from ADMINISTRADOR) then
+     set cod='A00001';
+	  else
+      begin
+         set n=(select convert(Max(right(id_admi,2)), signed integer) from ADMINISTRADOR)+1;
+         set aux=(convert(n, character));
+         set cod= concat('A',repeat('0',5-length(aux)),aux);
+         end;
+        end if;
+        return cod;
+    end $  
+  
+  select * from administrador;
+  
+insert into ADMINISTRADOR VALUES ('A00001','Kennett','Díaz', 'Taype','77777778',
+  '2001-08-31','Ate - Sicuani', 20, null ,'924049616','kennett.diaz@cibertec.edu.pe','KEN31','Kenet31',5,
+  curdate(), '2230');  
+insert into ADMINISTRADOR VALUES ('A00002','Jimmy','Quinteros', 'Terezo','75845975',
+  '2001-01-14','Av. Universitaria', 9, null ,'957442728','jimmy.quinteros@cibertec.edu.pe','Jimm31','Jimmy1',5,
+  curdate(), '2220');
+
+  select * from cliente;
+  
+CREATE TABLE CATEGORIA(
+cod_cat 			INT 			NOT NULL,
+desc_cat			VARCHAR(30) 	NOT NULL,
+constraint PK_CATEGORIA primary key(cod_cat)
+);
+select * from categoria;
+
+insert into CATEGORIA values (1,'Laptos');
+insert into CATEGORIA values (2,'Computadoras');
+insert into CATEGORIA values (3,'Partes de PC');
+insert into CATEGORIA values (4,'Monitores y Más');
+select * from CATEGORIA;
+
+CREATE TABLE PROVEEDOR(
+cod_prove			char(6)			not null,
+RUC_prove			varchar(20)		not null,
+ape_prove			varchar(25)		not null,
+fijo_prove			char(9)			not null 		unique,
+direc_prove			varchar(100)	not null,
+email_prove			varchar(80)		not null		unique,
+cod_cat				int				not null,
+constraint PK_PROVEEDOR primary key(cod_prove),
+constraint FK_PROVEEDOR_CATEGORIA foreign key(cod_cat)references CATEGORIA(cod_cat)
+);
+
+create table PRODUCTO(
+cod_pro 			varchar(11) 	   	NOT NULL,
+nombre				varchar(150)	NOT NULL,
+/*imagen				varchar(50)		NOT NULL,*/
+descripcion 		VARCHAR(150) 	NOT	NULL,
+cod_cat 			INT 			NOT NULL,
+STOCK 				INT(11)			NOT NULL,
+PRECIO 				Double 			NOT NULL,
+constraint PK_PRODUCTO PRIMARY KEY(cod_pro),
+constraint FK_PRODUCTO_CATEGORIA FOREIGN KEY (cod_cat) REFERENCES CATEGORIA(cod_cat)
+);
+
+  DELIMITER $
+  create function genera_producto() returns char(6) deterministic
+  begin
+       Declare cod char(6);
+       declare n int;
+	   declare aux varchar(6);
+       if not exists(select*from PRODUCTO) then
+       set cod='P0001';
+       else
+           begin
+           set n =(select convert(Max(right(cod_pro,3)), signed integer) from PRODUCTO)+1;
+           set aux =(convert(n, character));
+           set cod=concat('P',repeat('0',4-length(aux)),aux);
+           end;
+	   end if; 
+	return cod ; 
+  end $
+
+insert into PRODUCTO values ('P0001','AMD','Computadora ALLIGE AMD Ryzen 5 2600 8GB. Video RX 500 8GB',2,30,3129 );
+insert into PRODUCTO values ('P0002','INTEL','Computadora IMAGINATE INTEL I7 8GB 1TB + 120GB SSD T.VIDEO GT 1030',2,15,3720 );
+insert into PRODUCTO values ('P0003','AMD','computadora FURY MACHINE III AMD RYZEN 7-3700X 16GB 480GB SSD T.VIDEO RX 5500 XT 8GB',2,12,5947);
+insert into PRODUCTO values ('P0004','INTEL','computadora LUAN INTEL I3-9100F 8GB 240GB SSD T.VIDEO RX 550 4GB',2,20,1769);
+insert into PRODUCTO values ('P0005','AMD','computadora AMD RYZEN 3-3100 8GB 1TB T.VEO GEFORCE 210 1GB',2,15,1700);
+insert into PRODUCTO values ('P0006','AMD','computadora REYNA AMD RYZEN 3 3100 8GB 240GB SSD T.VIDEO RX 550 4GB',2,13,1850);
+insert into PRODUCTO values ('P0007','ASUS','LAPTOP ASUS M509DA-BQ1079 RYZEN 3 3250 8GB 1TB 15.6 FULL HD',1,10,2778);
+insert into PRODUCTO values ('P0008','HP','LAPTOP HP PAVILION - I7 - BY 3676 - 8GB 1TB 512SSD 17.3 FULL HB WINDOWS 10',1,8,3900);
+insert into PRODUCTO values ('P0009','ACER','LAPTOP ACER SWIFT 3 FF 314 - 42 R0HP 8GB 256 SSD 14 FULL HD WINDOWS 10',1,13,1190);
+insert into PRODUCTO values ('P0010','HP','MEMORY RAM HP V8 SERIES 8GB 360MHZ DDR4 (RGB)',3,12,218);
+insert into PRODUCTO values ('P0011','KINGSTON','MEMORY RAM KINGSTON HYPPER X PREDATOR 8GB DDR4 300MHZ (NEGRO LED-RGB)',3,5,228);
+insert into PRODUCTO values ('P0012','CORSAIR','MEMORY RAM CORSAIR 8GB DDR4 300MHZ (NEGRO)',3,10,188);
+insert into PRODUCTO values ('P0013','AMD','PROCESADOR AMD RYZEN 9 5950X 3.4GHZ',3,3,4067);
+insert into PRODUCTO values ('P0014','AMD','PROCESADOR AMD RYZEN 5 3600XT 4.0GHZ AM4',3,10,1254);
+insert into PRODUCTO values ('P0015','INTEL','PROCESADOR INTEL CORE I9 - 10900K 3.70GHZ 20MB LGA1200',3,8,2781);
+insert into PRODUCTO values ('P0016','INTEL','PROCESADOR INTEL CORE I7 - 10700K 3.80GHZ 16MB LGA1200',3,5,1943);
+insert into PRODUCTO values ('P0017','ASUS','MAINBOARD ASUS PRIME H310M DDR4 LG1151',3,6,266);
+insert into PRODUCTO values ('P0018','ASROCK','MAINBOARD ASROCK B450M AM4',3,3,374);
+insert into PRODUCTO values ('P0019','MSI','MAINBOARD MSI A320M - A PROMAX AM4',3,4,246);
+insert into PRODUCTO values ('P0020','AOC','MONITOR AOC 23.8 7MS 60GHZ LED IPS HDMI vGA',4,3,526);
+
+select * from PRODUCTO;
+delete from producto where cod_pro=1;
+
+
+/*insert into VENTA values (1,'Diana Rodrigues Gonzales\r\n','2020-10-15 00:00:00');*/
+select * from estadoBol;
+create table estadoBol(
+ cod_est int primary key,
+ des_est varchar(15) not null
+);
+
+insert into estadoBol values(1,'pendiente');
+insert into estadoBol values(2,'cancelado');
+insert into estadoBol values (3,'anulado');
+
+
+create table BOLETA(
+num_bol      char(10) not null,
+fch_bol    datetime,
+cod_cli  char(7) not null,
+cod_est  int not null,
+subtotal decimal(10,2),
+igv  decimal(10,2),
+total decimal(10,2),
+primary key (num_bol),
+foreign key (cod_cli) references CLIENTE(cod_cli),
+foreign key (cod_est) references ESTADOBOL(cod_est)
+);
+
+DELIMITER $
+  create function genera_boleta() returns char(10) deterministic
+  begin
+	Declare cod char(10);
+     declare n int;
+     declare aux varchar(10);
+     if not exists(select*from boleta) then
+     set cod='BOL0000001';
+	  else
+      begin
+         set n=(select convert(Max(right(num_bol,1)), signed integer) from boleta)+1;
+         set aux=(convert(n, character));
+         set cod= concat('BOL',repeat('0',7-length(aux)),aux);
+         end;
+        end if;
+        return cod;
+    end $
+select * from administrador;
+select * from cliente;
+select * from boleta;
+
+insert into BOLETA values('BOL0000001', now(),'C000001',1,150,1,160);
+insert into BOLETA values('BOL0000002', '2002-05-20','C000002',3,1500,18,1600);
+insert into BOLETA values('BOL0000003', '2004-06-13','C000002',2,1200,18,1300);
+insert into BOLETA values('BOL0000004', '2004-12-05','C000001',1,1680,18,1700);
+insert into BOLETA values('BOL0000005', '2005-06-24','C000002',1,2500,18,3000);
+insert into BOLETA values('BOL0000006', '2005-08-14','C000002',2,3500,18,4000);
+insert into BOLETA values('BOL0000007', now(),'C000001',1,150,1,160);
+insert into BOLETA values('BOL0000008', now(),'C000002',1,250,2,270);
+insert into BOLETA values('BOL0000009', now(),'C000002',1,220,1,233);
+insert into BOLETA values('BOL0000010', now(),'C000002',1,220,1,233);
+insert into BOLETA values('BOL0000011', now(),'C000003',2,360,3,370);
+insert into BOLETA values('BOL0000012', now(),'C000003',3,158,5,250);
+insert into BOLETA values('BOL0000013', now(),'C000002',3,254,3,320);
+insert into BOLETA values('BOL0000014', now(),'C000002',2,357,2,450);
+insert into BOLETA values('BOL0000015', now(),'C000002',2,159,3,180);
+insert into BOLETA values('BOL0000016', now(),'C000001',3,652,1,700);
+insert into BOLETA values('BOL0000017', now(),'C000003',3,396,2,410);
+
+/*proc. consulta por intervalo de fecha*/
+DELIMITER $$
+CREATE PROCEDURE USP_INTERVALO_BOLETA(FECHA1 DATE, FECHA2 DATE)
+BEGIN
+SELECT  B.NUM_BOL, B.FCH_BOL, B.COD_CLI, E.DES_EST, B.SUBTOTAL,IGV,TOTAL FROM BOLETA B join ESTADOBOL E
+ON B.COD_EST=E.COD_EST
+WHERE B.FCH_BOL BETWEEN FECHA1 AND FECHA2;
+END $$
+DELIMITER ;
+select*from administrador;
+call USP_INTERVALO_BOLETA('2002-05-20','2004-06-13');
+
+delete from boleta where num_bol='BOL0000001';
+select * from boleta;
+
+select * from cliente;
+
+create table DETALLE_BOLETA(
+num_bol     char(10) not null,
+cod_pro      char(6) not null,
+cantidad    int,
+importe     decimal(8,2),
+primary key (num_bol,COD_pro),
+foreign key (num_bol) references BOLETA(NUM_BOL),
+foreign key (COD_pro) references producto(COD_pro)
+);
+
+insert into DETALLE_BOLETA VALUES ('BOL0000001','P0001', 2,100.00);
+insert into DETALLE_BOLETA VALUES ('BOL0000002','P0002', 3,150.00);
+insert into DETALLE_BOLETA VALUES ('BOL0000003','P0003', 1,100.00);
+insert into DETALLE_BOLETA VALUES ('BOL0000004','P0004', 10,2000.00);
+insert into DETALLE_BOLETA VALUES ('BOL0000005','P0005', 2,300.00);
+insert into DETALLE_BOLETA VALUES ('BOL0000005','P0002', 6,300.00);
+
+select *  from detalle_Boleta;
+
+
+select * from cliente where email_cli = 'Diana@gmail.com' and clave_cli='diana123';
+
+/*insert tb_cliente*/
+ insert into CLIENTE values (genera_cliente(),'78549658', 'Juan', 'Mendoza',
+'Av. Paseo de la República',6, '954859561', '010152128','JuanMen@gmail.com','mendoza123');
+insert into CLIENTE values (genera_cliente(),'02485659','Diana','Rodriguez','Calle los Hidraulicos',
+19,'925635947','012559812','DianaR@gmail.com','dianaperu');
+insert into CLIENTE values (genera_cliente(),'78154952','Alexander','Robles','Av. Separadora Industrial',
+20,'952456123','014856657','AlexanderReds@outlook.com','Peru12Alex');
+insert into CLIENTE values (genera_cliente(),'02754689','Johamy','Concepcio','Av. Ricardo Palma',
+11,'912345741',null,'JohaConcep19@gmail.com','yo123johamy');
+
+/*procedimiento almacenado para el login*/
+DELIMITER $$
+create procedure usp_validaAcceso (ema varchar(25), pas varchar(15))
+begin
+select * from CLIENTE where email_cli = ema and clave_cli=pas;
+end$$
+DELIMITER ;
+
+call usp_validaAcceso ('Diana@gmail.com','diana123');
+
+select * from administrador;
+
+/*actualiar administrador*/
+select *  from administrador;
+
+update administrador set nom_admi = 'pepito', apePat_admi = 'LL', apeMat_admi = 'mamaní', DNI_admi = 52452123,
+fechNac_admi = '1997-05-18', dir_admi = 'Las pingas', cod_dist = '2', fijo_admi = 012020123, cel_admi = 984565215,
+email_admi = 'pingas@gmail.com', usuario_admi = 'PG', clave_Admi = '12asd', ID_cargo = 3, fech_contrato = '2020-10-15',
+sueldo= '2103' where ID_admi = 'A00002';
+
+/*eliminar administrador*/
+delete from administrador where ID_admi = 'A00002';
+
+/*buscar administrador*/
+select * from administrador where ID_admi = 'A00001';
+
+/*login*/
+select *  from administrador where usuario_admi = 'KEN31' and clave_admi = 'Kenet31';
+
+/*lista de cargos*/
+select * from cargo;
+
+/*listado por like*/
+select * from administrador where nom_admi like '%Kennett%';
+
+/*listado de todos los administradores de la pagina*/
+select * from administrador;
+
+/*consulta para el listado de administradores*/
+select a.id_admi,a.nom_admi,a.apePat_admi, a.apeMat_admi, a.DNI_admi, a.fechNac_admi, a.dir_admi, d.nom_dist,a.cel_admi,
+a.email_admi,a.usuario_admi,c.nom_cargo, a.fech_contrato, a.sueldo
+from administrador a inner join distrito d 
+on a.cod_dist = d.cod_dist
+inner join cargo c
+on a.id_cargo = c.id_Cargo
+where nom_admi like '%K%'
+order by a.nom_admi;
+select*from administrador;
+/*listado de administradores por like*/
+select a.nom_Admi, a.apePat_Admi, a.apeMat_admi,a.dir_admi, d.nom_dist, a.cel_admi, a.email_admi, c.nom_cargo
+from administrador a inner join distrito d 
+on a.cod_dist = d.cod_dist
+inner join cargo c
+on a.id_cargo = c.id_Cargo
+where nom_admi like '%K%'
+order by a.nom_admi;
+
+select * from administrador;
+select * from cliente;
+select * from distrito;
+
+/*actualizar cliente*/
+update cliente set DNI_cli = '12845125', nom_cli='xdxd', ape_cli='xdxd', direc_cli='fff',cod_dist=3, cel_cli=965412548,fijo_cli=124452154,
+email_cli='sdd', clave_cli='assd' where cod_cli='C000002';
+
+select * from producto;
+
+select p.cod_pro, p.nombre, p.descripcion, c.desc_cat, p.stock, p.precio
+from producto p inner join categoria c
+on p.cod_cat = c.cod_cat;
+
+/*listado like por nombre categoria*/
+select p.cod_pro, p.nombre, p.descripcion, c.desc_cat, p.stock, p.precio
+from producto p inner join categoria c
+on p.cod_cat = c.cod_cat
+where desc_cat like '%computadoras%';
+
+
+/*actualizar producto*/
+update producto set nombre='', descripcion='', cod_cat=1, stock=20, precio=1202 where cod_pro='P0001';
+
+select * from cliente;
+select * from detalle_boleta;
+select * from administrador;
