@@ -2,12 +2,14 @@ package com.electro.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="ADMINISTRADOR")
 
 public class Administrador {
+	@Id
 	@Column(name = "ID_admi")
 	  private String codigoAdm; 		
 	@Column(name = "nom_admi")

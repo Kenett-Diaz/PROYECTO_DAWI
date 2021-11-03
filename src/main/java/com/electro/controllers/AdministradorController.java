@@ -21,8 +21,9 @@ public class AdministradorController {
 	
 	@GetMapping("/cargar")
 	public String cargarPag(Model model) {
-		model.addAttribute("cliente", new Administrador());
-		return "login";
+		model.addAttribute("administrador", new Administrador());
+		
+		return "loginAdministrador";
 	}
 	
 	@PostMapping("/validar")
@@ -37,11 +38,11 @@ public class AdministradorController {
 			model.addAttribute("Usuario",new Administrador());
 			model.addAttribute("mensaje","Usuario/Clave incorrecto");
 			
-			return "login";
+			return "loginAdministrador";
 		}else {
 			model.addAttribute("Usuario", adm);
 			
-			return "/index";
+			return "index";
 		}
 		
 		

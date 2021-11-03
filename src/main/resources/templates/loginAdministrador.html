@@ -151,26 +151,31 @@
 				<h1 style="font-family:Impact; font-size: 50px; color:#1F89E6; font-style: normal;">LOGIN ADMINISTRADOR
 				</h1>
 
-				<form action="">
+				<form action="/logadm/validar" method="post" th:object="${administrador}">
 					<div style="margin-left:120px;width:400px; top: 0px; right:0px; " class="form-group">
 
-						<label for="Email">Usuario :</label> <input type="text" class="form-control"
-							id="exampleInputEmail1" name="txtCorreo" placeholder="Ingrese su nickname">
+						<label for="Email">Usuario :</label> 
+						<input type="text" th:field="*{usrAdm}" class="form-control" 
+							required id="exampleInputEmail1" name="txtCorreo" placeholder="Ingrese su nickname">
 					</div>
 					<div style="margin-left:120px;width:400px; top: 0px; right:0px; " class="form-group">
-						<label for="Password">Contraseña :</label> <input type="password" class="form-control"
-							id="password" name="txtClave" placeholder="Password">
+						<label for="Password">Contraseña :</label>
+						 <input type="password" class="form-control" th:field="*{claveAdm}"
+							required id="password" name="txtClave" placeholder="Password">
 					</div>
 					<br>
-					<p>${mensaje}
-					</p>
+					
 					<br>
 					<button style="margin:0px 0px 50px 280px;" type="submit" class="btn btn-primary" name="btnes"
 						value="v">Ingresar</button>
 
 					<br>
 
-				</form>
+					</form>
+					<!-- Alerta -->
+						<div class="alert alert-danger" role="alert" th:if="${mensaje}"  th:text="${mensaje}"></div>
+						
+						
 				<br>
 			</div>
 		</section>
