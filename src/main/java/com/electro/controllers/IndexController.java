@@ -69,5 +69,12 @@ public class IndexController {
 	}
 	//LOGIN DE ADMINISTRADORES
 	
+	@GetMapping("/loginAdministrador")
+	public String loginAdministrador() {
+		//logica 
+		
+		
+		return "loginAdministrador";
+	}
 	
 }
