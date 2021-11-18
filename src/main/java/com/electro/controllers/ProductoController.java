@@ -36,8 +36,8 @@ public class ProductoController {
 		repo.save(producto);	//funciona como el merge, o sea que no solo graba tambien actualiza
 		model.addAttribute("lstCategorias", repoc.findAll());
 		model.addAttribute("lstProductos",repo.findAll());
-	
-		return "editarProductos";
+		 model.addAttribute("mensaje","Registro/Actualizacón exitosa!");
+		return "listadoProd";
 	}
 
 	@GetMapping("/listarProd")
@@ -52,17 +52,32 @@ public class ProductoController {
 	public String buscarProd(@ModelAttribute Producto p, Model model) {
 		model.addAttribute("producto", repo.findById(p.getCodigoProducto()));
 		model.addAttribute("lstCategorias", repoc.findAll());
+		 
 		return "editarProductos";
 	}
-	
 	@PostMapping("/eliminarProd")
 	public String eliminarProd(@ModelAttribute Producto p,Model model) {
-	   model.addAttribute("producto", new Producto());
-	   repo.deleteById(p.getCodigoProducto());
-	   model.addAttribute("lstCategorias", repoc.findAll());
-	   model.addAttribute("lstProductos",repo.findAll());   
-		return "listadoProd";
+		
+		try {
+			 model.addAttribute("producto", new Producto());
+			   repo.deleteById(p.getCodigoProducto());
+			   model.addAttribute("lstCategorias", repoc.findAll());
+			   model.addAttribute("lstProductos",repo.findAll()); 
+			   model.addAttribute("mensaje","Producto Eliminado");
+			   
+				return "listadoProd";
+		} catch (Exception e) {
+			  model.addAttribute("producto", repo.findById(p.getCodigoProducto()));
+			  
+			   model.addAttribute("lstCategorias", repoc.findAll());
+			 
+			   model.addAttribute("mensaje","Error de la llave foránea");
+			   
+				return "eliminarProductos";
+		}
+	 
 	}
+	
 	@PostMapping("/cargarEliminar")
 	public String cargarEliminar(@ModelAttribute Producto p,Model model) {
 		
