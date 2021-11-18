@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"> 	
+
+<head> 
+
+  <title>Listado de Productos</title> 
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	
+</head>
+
+<body>
+
+	<div style="margin-left: 20%; width: 60%;">
+		<h1 style="text-align: center;">Listado de productos</h1>
+		<br/>
+		<hr>
+		<table class="table table-dark">
+			  <thead>
+			    <tr>	
+			      <th class="text-center" scope="col">Código</th>
+			      <th class="text-center" scope="col">Nombre</th>
+			      <th class="text-center" scope="col">Descripción</th>
+			      <th class="text-center" scope="col">Categoria</th>
+			      <th class="text-center" scope="col">Stock</th>
+			      <th class="text-center" scope="col">Precio</th>
+			      <th></th>
+			       <th></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="p : ${lstProductos}"> 
+			      <td th:text="${p.codigoProducto}"></td>
+			      <td th:text="${p.nombreProducto}"></td>
+			      <td th:text="${p.descipcionProducto}"></td>
+			      
+			      <td th:each="c : ${lstCategorias}"
+			      th:if="${c.codigoCat}==${p.codigoCategoria}"
+			      th:text="${c.descCat}"></td>
+			      <td th:text="${p.stockProducto}"></td>
+			      <td th:text="${p.precioProducto}"></td>
+			      <td>		   
+			      		<form  action="/editarProd" method="POST">
+			      			<input type="hidden" name="codigoProducto" th:value="${p.codigoProducto}" />
+			      			<button type="submit"  class="btn btn-info" >Editar</button>
+			      		</form>
+			      </td>
+			     <td>	
+			   
+			      <form  action="/cargarEliminar" method="POST">
+			      			<input type="hidden" name="codigoProducto" th:value="${p.codigoProducto}" />
+			      			<button type="submit"  class="btn btn-danger" >Eliminar</button>
+			      		</form>
+			       </td>
+			    </tr>
+			   
+			  </tbody>
+		</table>
+	</div>
+</body>
+
+</html>

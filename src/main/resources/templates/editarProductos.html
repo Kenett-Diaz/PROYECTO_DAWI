@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"> 	<!-- JSTL/ CustomTag-->
+
+<head> 
+  <title>Mantenimiento | Productos</title> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+	<div style="margin-left: 20%; width: 60%;">
+	<h1 style="text-align: center;">Actualizar Productos</h1>
+	<form action="/grabarProd" method="post" th:object="${producto}">
+		  <div class="form-row">
+		    <div class="form-group col-md-12">
+		      <label class="text-center">Codigo del producto</label>
+		      <input  th:field="*{codigoProducto}" class="form-control" placeholder="Ingrese código">
+		    </div>
+		    <div class="form-group col-md-12">
+		      <label class="text-center">Nombre</label>
+		      <input th:field="*{nombreProducto}" class="form-control" placeholder="Ingrese nombre">
+		    </div>
+		    <div class="form-group col-md-12">
+		      <label  class="text-center">Descripcion</label>
+		      <input th:field="*{descipcionProducto}" class="form-control" placeholder="Ingrese descripcion">
+		    </div>
+		  </div>	
+		  <div class="form-row">
+		    <div class="form-group col-md-4">
+		      <label class="text-center" >Categoria</label>
+		     <select th:field="*{codigoCategoria}" class="form-control">
+		        <option th:value="-1" th:text="Seleccione"></option>
+		        <option th:each="c : ${lstCategorias}" 
+		        th:value="${c.codigoCat}" th:text="${c.descCat}"></option> 	           
+		      </select>
+		    </div>
+		    <div class="form-group col-md-4">
+		    <label class="text-center">Stock</label>
+		    <input th:field="*{stockProducto}" type="number"  min="1"
+		    class="form-control" placeholder="0">
+		  </div>
+		  <div class="form-group col-md-4">
+		    <label class="text-center" >Precio</label>
+		    <input th:field="*{precioProducto}" step="0.01" class="form-control" type="number"  placeholder="0.0">
+		  </div>
+		  </div>
+		  
+		 <button type="submit" onclick="confirm('¿Desea Actualizar?')" class="btn btn-info">Actualizar</button> |
+		  
+		  <a href="/listarProd" class="btn btn-primary">Volver al Listado</a>
+		 
+		  	 
+	</form>
+		
+	     
+	
+	<!-- Alerta -->
+		<div class="alert alert-danger" role="alert" th:if="${mensaje}"  th:text="${mensaje}"></div>
+	</div>
+</body>
+
+</html>

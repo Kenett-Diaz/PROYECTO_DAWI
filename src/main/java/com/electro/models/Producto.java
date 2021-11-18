@@ -25,15 +25,7 @@ public class Producto {
 	private double precioProducto;
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+//
 	
 	
 	public Producto() {
