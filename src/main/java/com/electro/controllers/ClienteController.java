@@ -34,7 +34,7 @@ public class ClienteController {
 		
 		System.out.println(cliente);
 		
-		Cliente clie=repocli.findByUsrClieAndClaveClie(cliente.getMailCliente(), cliente.getClaveCliente());
+		Cliente clie=repocli.findByMailClienteAndClaveCliente(cliente.getMailCliente(), cliente.getClaveCliente());
 		System.out.println(clie);
 		
 		//validacion

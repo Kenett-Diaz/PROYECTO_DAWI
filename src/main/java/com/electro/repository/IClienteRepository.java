@@ -6,10 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import com.electro.models.Cliente;
 
-@Qualifier("cliente")
+@Qualifier("clientes")
 @Repository
 public interface IClienteRepository extends JpaRepository<Cliente, String> {
 
 	//CRUD
-	Cliente findByUsrClieAndClaveClie(String mailCliente,String claveCliente);
+	Cliente findByMailClienteAndClaveCliente(String mailCliente,String claveCliente);
 }
