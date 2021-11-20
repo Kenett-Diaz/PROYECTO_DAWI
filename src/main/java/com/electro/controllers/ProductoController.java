@@ -55,6 +55,7 @@ public class ProductoController {
 		 
 		return "editarProductos";
 	}
+	
 	@PostMapping("/eliminarProd")
 	public String eliminarProd(@ModelAttribute Producto p,Model model) {
 		
@@ -76,7 +77,7 @@ public class ProductoController {
 				return "eliminarProductos";
 		}
 	 
-	}
+	} 
 	
 	@PostMapping("/cargarEliminar")
 	public String cargarEliminar(@ModelAttribute Producto p,Model model) {
