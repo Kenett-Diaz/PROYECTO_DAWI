@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.electro.models.Administrador;
+import com.electro.models.Cliente;
 
-@Qualifier("admins")
+@Qualifier("cliente")
 @Repository
-public interface IAdministradorRepository extends JpaRepository<Administrador, String> {
-	
+public interface IClienteRepository extends JpaRepository<Cliente, String> {
+
 	//CRUD
-		 Administrador findByUsrAdmAndClaveAdm(String usrAdm, String claveAdm);
+	Cliente findByUsrClieAndClaveClie(String mailCliente,String claveCliente);
 }

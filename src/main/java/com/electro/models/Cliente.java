@@ -41,6 +41,24 @@ public class Cliente {
 				+ ", cod_dist=" + cod_dist + ", celularCliente=" + celularCliente + ", fijoCliente=" + fijoCliente
 				+ ", mailCliente=" + mailCliente + ", claveCliente=" + claveCliente + "]";
 	}
+	
+	
+	
+	public Cliente(String codigoCliente, String dniCliente, String nombreCliente, String apellidoCliente,
+			String direccionCliente, int cod_dist, String celularCliente, String fijoCliente, String mailCliente,
+			String claveCliente) {
+		super();
+		this.codigoCliente = codigoCliente;
+		this.dniCliente = dniCliente;
+		this.nombreCliente = nombreCliente;
+		this.apellidoCliente = apellidoCliente;
+		this.direccionCliente = direccionCliente;
+		this.cod_dist = cod_dist;
+		this.celularCliente = celularCliente;
+		this.fijoCliente = fijoCliente;
+		this.mailCliente = mailCliente;
+		this.claveCliente = claveCliente;
+	}
 	public String getCodigoCliente() {
 		return codigoCliente;
 	}
