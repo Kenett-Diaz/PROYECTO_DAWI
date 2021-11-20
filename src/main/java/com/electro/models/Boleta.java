@@ -19,6 +19,8 @@ public class Boleta {
 	private int cod_est;
 	private double subtotal;
 	private double igv;
+	
+	
 	private double total;
 	
 	public Boleta() {
