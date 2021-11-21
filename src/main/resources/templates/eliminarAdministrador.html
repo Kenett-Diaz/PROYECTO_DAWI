@@ -161,7 +161,7 @@
 			  </button>
 		</div>
 	<form action="/eliminarAdmi" method="post" th:object="${administrador}">
-				  <div class="form-row">
+	  <div class="form-row">
 		    <div class="form-group col-md-6"  style="color:#fff;">
 		      <label class="text-center">Codigo del administrador</label>
 		      <input  th:field="*{codigoAdm}" class="form-control" placeholder="Ingrese código" required>
@@ -206,6 +206,14 @@
 		    <label class="text-center" >N° Celular</label>
 		    <input th:field="*{celularAdm}" step="0.01" class="form-control" type="number"  placeholder="" required>
 		  </div>
+		  		  <div class="form-group col-md-4" style="color:#fff;">
+		    <label class="text-center" >Fecha Contrato</label>
+		    <input th:field="*{fechaContratoAdm}"  class="form-control" type="date"  placeholder="" required>
+		  </div>
+		  <div class="form-group col-md-4" style="color:#fff;">
+		    <label class="text-center" >Fecha Nacimiento</label>
+		    <input th:field="*{fechaNacAdm}"  class="form-control" type="date"  placeholder="" required>
+		  </div>
 		  	<div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >Sueldo trabajador</label>
 		    <input th:field="*{sueldoAdm}"  class="form-control" type="number"  placeholder="" required>
@@ -218,6 +226,14 @@
 		        th:value="${c.ID_cargo}" th:text="${c.NOM_CARGO}"></option> 	           
 		      </select>
 		    </div>
+		       	<div class="form-group col-md-4" style="color:#fff;">
+		    <label class="text-center" >Usuario</label>
+		    <input th:field="*{usrAdm}"  class="form-control"   placeholder="" required>
+		  </div>
+		    <div class="form-group col-md-4" style="color:#fff;">
+		    <label class="text-center" >Clave trabajador</label>
+		    <input th:field="*{claveAdm}"  class="form-control"   placeholder="" required>
+		  </div>
 		  </div>
 		  
 		 <button type="submit" class="btn btn-danger">Eliminar</button> |

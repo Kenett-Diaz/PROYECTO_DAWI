@@ -171,9 +171,12 @@
 			    <tr>	
 			      <th class="text-center" scope="col">Código</th>
 			      <th class="text-center" scope="col">Nombre</th>
-			      <th class="text-center" scope="col">Correo Admi</th>
-			      <th class="text-center" scope="col">Sueldo</th>
+			      <th class="text-center" scope="col">Dirección</th>
+			      <th class="text-center" scope="col">Correo</th>
+			      <th class="text-center" scope="col">Distrito</th>
 			      <th class="text-center" scope="col">DNI</th>
+			      <th class="text-center" scope="col">Celular</th>
+			      <th class="text-center" scope="col">Sueldo</th>
 			      <th class="text-center" scope="col">Cargo</th>
 			      <th></th>
 			      <th></th>
@@ -183,10 +186,14 @@
 			    <tr th:each="p : ${lstAdministrador}"> 
 			   	<td th:text="${p.codigoAdm}"></td>
 			      <td th:text="${p.nombreAdm}"></td>
-			      <td th:text="${p.correoAdm}"></td>
-			      <td th:text="${p.sueldoAdm}"></td>
-			      <td th:text="${p.dniAdm}"></td>
-			      
+			       <td th:text="${p.direccionAdm}"></td>
+			        <td th:text="${p.correoAdm}"></td>
+			       <td th:each="d : ${lstDistrito}"
+			      th:if="${d.codigoDist}==${p.cod_dist}"
+			      th:text="${d.nomDist}"></td>
+			     <td th:text="${p.dniAdm}"></td>
+			      <td th:text="${p.celularAdm}"></td>
+			      <td th:text="${p.sueldoAdm}"></td>	
 			      <td th:each="c : ${lstCargo}"
 			      th:if="${c.ID_cargo}==${p.ID_cargo}"
 			      th:text="${c.NOM_CARGO}"></td>

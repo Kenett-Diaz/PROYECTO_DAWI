@@ -164,11 +164,11 @@
 		      <label class="text-center" >Nombre</label>
 		      <input th:field="*{nombreAdm}" class="form-control" placeholder="Ingrese nombre" required>
 		    </div>
-		  	<div class="form-group col-md-6" style="color:#fff;">
+		  <div class="form-group col-md-6" style="color:#fff;">
 		      <label class="text-center" >Apellido Paterno</label>
 		      <input th:field="*{apePaternoAdm}" class="form-control" placeholder="Ingrese Apellido Paterno" required>
 		    </div>
-		    		  	<div class="form-group col-md-6" style="color:#fff;">
+		  <div class="form-group col-md-6" style="color:#fff;">
 		      <label class="text-center" >Apellido Materno</label>
 		      <input th:field="*{apeMaternoAdm}" class="form-control" placeholder="Ingrese Apellido Materno" required>
 		    </div>
@@ -202,7 +202,7 @@
 		  </div>
 		  		  <div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >Fecha Contrato</label>
-		    <input th:field="*{fechaContratoAdm}"  class="form-control" type="number"  placeholder="" required>
+		    <input th:field="*{fechaContratoAdm}"  class="form-control" type="date"  placeholder="" required>
 		  </div>
 		  <div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >Fecha Nacimiento</label>
@@ -220,6 +220,15 @@
 		        th:value="${c.ID_cargo}" th:text="${c.NOM_CARGO}"></option> 	           
 		      </select>
 		    </div>
+		       	<div class="form-group col-md-4" style="color:#fff;">
+		    <label class="text-center" >Usuario</label>
+		    <input th:field="*{usrAdm}"  class="form-control"   placeholder="" required>
+		  </div>
+		     	<div class="form-group col-md-4" style="color:#fff;">
+		    <label class="text-center" >Clave </label>
+		    <input th:field="*{claveAdm}"  class="form-control"   placeholder="" required>
+		  </div>
+		 
 		  </div>
 		 
 		 
