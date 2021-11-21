@@ -6,13 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.electro.models.Administrador;
-import com.electro.models.Producto;
 import com.electro.repository.IAdministradorRepository;
 import com.electro.repository.ICargoRepository;
-import com.electro.repository.ICategoriaRepository;
 import com.electro.repository.IDistritoRepository;
 import com.electro.repository.IProductoRepository;
 
@@ -68,7 +65,7 @@ public class AdministradorController {
 		model.addAttribute("lstCargo", repoc.findAll());
 		model.addAttribute("lstDistrito", repodis.findAll());
 		
-		return "mantenimientoProductos";
+		return "mantenimientoAdministradores";
 	}
 	
 	@PostMapping("/grabarAdmi")
@@ -124,7 +121,7 @@ public class AdministradorController {
 	 
 	} 
 	
-	@PostMapping("/cargarEliminar")
+	@PostMapping("/cargarEliminarAdministrador")
 	public String cargarEliminar(@ModelAttribute Administrador p,Model model) {
 		model.addAttribute("lstDistrito", repodis.findAll());
 		model.addAttribute("administrador", repoadm.findById(p.getCodigoAdm()));
