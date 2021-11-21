@@ -75,6 +75,7 @@ public class AdministradorController {
 		model.addAttribute("lstDistrito", repodis.findAll());
 		model.addAttribute("lstCargo", repoc.findAll());
 		model.addAttribute("lstAdministrador",repoadm.findAll());
+		
 		 model.addAttribute("mensaje","Registro/Actualizacón exitosa!");
 		return "listadoAdmi";
 	}

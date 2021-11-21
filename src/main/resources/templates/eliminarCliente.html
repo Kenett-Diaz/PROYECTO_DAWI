@@ -152,7 +152,7 @@
 	<!-- Productos Eliminar -->
 	<div style="margin-left: 5%; width: 90%;color:#fff;">
 
-	<h1 style="text-align: center; margin-top: 20px;">Eliminar Administrador</h1>
+	<h1 style="text-align: center; margin-top: 20px;">Eliminar Cliente</h1>
 	<!-- Alerta -->
 		<div class="alert alert-danger  alert-dismissible show" role="alert"  th:if="${mensaje}">
 			  <strong  th:text="${mensaje}"></strong> 
@@ -160,85 +160,67 @@
 			    <span aria-hidden="true">&times;</span>
 			  </button>
 		</div>
-	<form action="/eliminarAdmi" method="post" th:object="${administrador}">
-	  <div class="form-row">
-		    <div class="form-group col-md-6"  style="color:#fff;">
-		      <label class="text-center">Codigo del administrador</label>
-		      <input  th:field="*{codigoAdm}" class="form-control" placeholder="Ingrese código" required>
+	<form action="/eliminarCli" method="post" th:object="${cliente}">
+				   <div class="form-row">
+		    <div class="form-group col-md-4"  style="color:#fff;">
+		      <label class="text-center">Codigo del cliente</label>
+		      <input  th:field="*{codigoCliente}" class="form-control" placeholder="Ingrese Código" disabled>
 		    </div>
-		    <div class="form-group col-md-6" style="color:#fff;">
+		    <div class="form-group col-md-4" style="color:#fff;" >
+		    <label class="text-center" >Dni</label>
+		    <input th:field="*{dniCliente}" type="number"  min="1"
+		    class="form-control" placeholder="" disabled>
+		  </div>
+		    <div class="form-group col-md-4" style="color:#fff;">
 		      <label class="text-center" >Nombre</label>
-		      <input th:field="*{nombreAdm}" class="form-control" placeholder="Ingrese nombre" required>
+		      <input th:field="*{nombreCliente}" class="form-control" placeholder="Ingrese Nombre" disabled>
 		    </div>
 		  	<div class="form-group col-md-6" style="color:#fff;">
-		      <label class="text-center" >Apellido Paterno</label>
-		      <input th:field="*{apePaternoAdm}" class="form-control" placeholder="Ingrese Apellido Paterno" required>
+		      <label class="text-center" >Apellidos</label>
+		      <input th:field="*{apellidoCliente}" class="form-control" placeholder="Ingrese Apellidos" disabled>
 		    </div>
-		    		  	<div class="form-group col-md-6" style="color:#fff;">
-		      <label class="text-center" >Apellido Materno</label>
-		      <input th:field="*{apeMaternoAdm}" class="form-control" placeholder="Ingrese Apellido Materno" required>
-		    </div>
-		    <div class="form-group col-md-12" style="color:#fff;">
+		  
+		    <div class="form-group col-md-6" style="color:#fff;">
 		      <label  class="text-center" >Dirección</label>
-		      <input th:field="*{direccionAdm}" class="form-control" placeholder="Ingrese Dirección" required>
+		      <input th:field="*{direccionCliente}" class="form-control" placeholder="Ingrese Dirección" disabled>
 		    </div>
-		  	<div class="form-group col-md-12" style="color:#fff;">
-		      <label  class="text-center" >Email </label>
-		      <input th:field="*{correoAdm}" class="form-control" placeholder="Ingrese Email" required>
-		    </div>
+		  
 		  </div>	
 		  <div class="form-row">
 		    <div class="form-group col-md-4" style="color:#fff;">
 		      <label class="text-center" >Distrito</label>
-		     <select th:field="*{cod_dist}" class="form-control" required>
+		     <select th:field="*{cod_dist}" class="form-control" disabled>
 		        <option th:value="-1" th:text="Seleccione"></option>
 		        <option th:each="c : ${lstDistrito}" 
 		        th:value="${c.codigoDist}" th:text="${c.nomDist}"></option> 	           
 		      </select>
 		    </div>
 		    
-		    <div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >Dni</label>
-		    <input th:field="*{dniAdm}" type="number"  min="1"
-		    class="form-control" placeholder="" required>
-		  </div>
+		    
 		  <div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >N° Celular</label>
-		    <input th:field="*{celularAdm}" step="0.01" class="form-control" type="number"  placeholder="" required>
+		    <input th:field="*{celularCliente}" step="0.01" class="form-control" type="number"  placeholder="" disabled>
 		  </div>
-		  		  <div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >Fecha Contrato</label>
-		    <input th:field="*{fechaContratoAdm}"  class="form-control" type="date"  placeholder="" required>
+		   <div class="form-group col-md-4" style="color:#fff;">
+		    <label class="text-center" >N° Telefono Fijo</label>
+		    <input th:field="*{fijoCliente}" step="0.01" class="form-control" type="number"  placeholder="" disabled>
 		  </div>
-		  <div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >Fecha Nacimiento</label>
-		    <input th:field="*{fechaNacAdm}"  class="form-control" type="date"  placeholder="" required>
-		  </div>
-		  	<div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >Sueldo trabajador</label>
-		    <input th:field="*{sueldoAdm}"  class="form-control" type="number"  placeholder="" required>
-		  </div>
-		  		    <div class="form-group col-md-4" style="color:#fff;">
-		      <label class="text-center" >Cargo</label>
-		     <select th:field="*{ID_cargo}" class="form-control" required>
-		        <option th:value="-1" th:text="Seleccione"></option>
-		        <option th:each="c : ${lstCargo}" 
-		        th:value="${c.ID_cargo}" th:text="${c.NOM_CARGO}"></option> 	           
-		      </select>
+		  	
+		  	<div class="form-group col-md-6" style="color:#fff;">
+		      <label  class="text-center" >Email </label>
+		      <input th:field="*{mailCliente}" class="form-control" placeholder="Ingrese Email" disabled >
 		    </div>
-		       	<div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >Usuario</label>
-		    <input th:field="*{usrAdm}"  class="form-control"   placeholder="" required>
-		  </div>
-		    <div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >Clave trabajador</label>
-		    <input th:field="*{claveAdm}"  class="form-control"   placeholder="" required>
-		  </div>
+		  
+		  <div class="form-group col-md-6 " style="color:#fff;">
+		      <label >Contraseña</label>
+		      <input type="text" th:field="*{claveCliente}" class="form-control" placeholder="Ingrese contraseña">
+		    </div>	
+			    
 		  </div>
 		  
 		 <button type="submit" class="btn btn-danger">Eliminar</button> |
 		  
-		  <a href="/listarAdmi" class="btn btn-primary">Volver al Listado</a>
+		  <a href="/listarCli" class="btn btn-primary">Volver al Listado</a>
 		 
 		  	 
 	</form>
