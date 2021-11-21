@@ -1,11 +1,13 @@
 <!DOCTYPE HTML>
 
-<html xmlns:th="http://www.thymeleaf.org"> 	<!-- JSTL/ CustomTag-->
+<html xmlns:th="http://www.thymeleaf.org"> 	
 
 <head> 
-  <title>Mantenimiento | Administradores</title> 
+
+  <title>Listado de Administradores</title> 
+
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 	 <link href="css/estiloProductos.css" rel="stylesheet" type="text/css">
 <link href="../font.css" rel="stylesheet" type="text/css">
@@ -15,8 +17,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
 </head>
 
-<body background="fondo/azul.jpg">  
-
+<body background="fondo/azul.jpg"> 
 
 	<div id="contenedor">
 		<header>
@@ -132,7 +133,7 @@
 							
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-							<a class="dropdown-item" href="/login">Cliente</a>
+							<a class="dropdown-item" href="/login">Cliente</a> 
 							<a class="dropdown-item" href="/loginAdministrador">Administrador</a>
 
 
@@ -145,92 +146,81 @@
 				</ul>
 			</div>
 		</nav>
+	</div>
 		<br>
 		<br>
 
+		
+	<!-- Productos Listar -->
+
+	<div style=" margin-left: 5%; width: 90%;">
+	
 			
-	<!-- Productos Registrar -->
-	<div style=" padding: 20px; width: 100%; color:#fff;" >
-		<br>
-		<br>
-	<h1 style="text-align: center; color: #fff; margin-top: 20px;" >Mantenimiento de Administradores</h1>
-	<form action="/grabarAdmi" method="post" th:object="${administrador}">
-		  <div class="form-row">
-		    <div class="form-group col-md-6"  style="color:#fff;">
-		      <label class="text-center">Codigo del administrador</label>
-		      <input  th:field="*{codigoAdm}" class="form-control" placeholder="Ingrese código" required>
-		    </div>
-		    <div class="form-group col-md-6" style="color:#fff;">
-		      <label class="text-center" >Nombre</label>
-		      <input th:field="*{nombreAdm}" class="form-control" placeholder="Ingrese nombre" required>
-		    </div>
-		  	<div class="form-group col-md-6" style="color:#fff;">
-		      <label class="text-center" >Apellido Paterno</label>
-		      <input th:field="*{apePaternoAdm}" class="form-control" placeholder="Ingrese Apellido Paterno" required>
-		    </div>
-		    		  	<div class="form-group col-md-6" style="color:#fff;">
-		      <label class="text-center" >Apellido Materno</label>
-		      <input th:field="*{apeMaternoAdm}" class="form-control" placeholder="Ingrese Apellido Materno" required>
-		    </div>
-		    <div class="form-group col-md-12" style="color:#fff;">
-		      <label  class="text-center" >Dirección</label>
-		      <input th:field="*{direccionAdm}" class="form-control" placeholder="Ingrese Dirección" required>
-		    </div>
-		  	<div class="form-group col-md-12" style="color:#fff;">
-		      <label  class="text-center" >Email </label>
-		      <input th:field="*{correoAdm}" class="form-control" placeholder="Ingrese Email" required>
-		    </div>
-		  </div>	
-		  <div class="form-row">
-		    <div class="form-group col-md-4" style="color:#fff;">
-		      <label class="text-center" >Distrito</label>
-		     <select th:field="*{cod_dist}" class="form-control" required>
-		        <option th:value="-1" th:text="Seleccione"></option>
-		        <option th:each="c : ${lstDistrito}" 
-		        th:value="${c.codigoDist}" th:text="${c.nomDist}"></option> 	           
-		      </select>
-		    </div>
-		    
-		    <div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >Dni</label>
-		    <input th:field="*{dniAdm}" type="number"  min="1"
-		    class="form-control" placeholder="" required>
-		  </div>
-		  <div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >N° Celular</label>
-		    <input th:field="*{celularAdm}" step="0.01" class="form-control" type="number"  placeholder="" required>
-		  </div>
-		  		  <div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >Fecha Contrato</label>
-		    <input th:field="*{fechaContratoAdm}"  class="form-control" type="number"  placeholder="" required>
-		  </div>
-		  <div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >Fecha Nacimiento</label>
-		    <input th:field="*{fechaNacAdm}"  class="form-control" type="date"  placeholder="" required>
-		  </div>
-		  	<div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >Sueldo trabajador</label>
-		    <input th:field="*{sueldoAdm}"  class="form-control" type="number"  placeholder="" required>
-		  </div>
-		  		    <div class="form-group col-md-4" style="color:#fff;">
-		      <label class="text-center" >Cargo</label>
-		     <select th:field="*{ID_cargo}" class="form-control" required>
-		        <option th:value="-1" th:text="Seleccione"></option>
-		        <option th:each="c : ${lstCargo}" 
-		        th:value="${c.ID_cargo}" th:text="${c.NOM_CARGO}"></option> 	           
-		      </select>
-		    </div>
-		  </div>
-		 
-		 
-		  <button type="submit" class="btn btn-primary">Grabar</button> |
-		 <a href="/listarAdmi" class="btn btn-secondary">Listar</a>		
-	</form>
-	
-	
-						
+		<h1 style="text-align: center; color:#fff; margin-top: 20px;">Listado de Clientes</h1>
+		<br/>
+		<hr>
+		<!-- Alerta -->
+		<div class="alert alert-success  alert-dismissible show" role="alert"  th:if="${mensaje}">
+			  <strong  th:text="${mensaje}"></strong> 
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+		</div>
+		<table class="table table-dark">
+			  <thead>
+			    <tr>	
+			      <th class="text-center" scope="col">Código</th>
+			      <th class="text-center" scope="col">DNI</th>
+			      <th class="text-center" scope="col">Nombres</th>
+			      <th class="text-center" scope="col">Apellidos</th>
+			      <th class="text-center" scope="col">Dirección</th>
+			      <th class="text-center" scope="col">Distrito</th>
+			      <th class="text-center" scope="col">Nº Celular</th>
+			      <th class="text-center" scope="col">Nº Fijo</th>
+			      <th class="text-center" scope="col">Email</th>
+			      <th class="text-center" scope="col">Contraseña</th>
+			      <th></th>
+			      <th></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="c : ${lstCliente}"> 
+			      <td th:text="${c.codigoCliente}"></td>
+			      <td th:text="${c.dniCliente}"></td>
+			      <td th:text="${c.nombreCliente}"></td>
+			      <td th:text="${c.apellidoCliente}"></td>
+			      <td th:text="${c.direccionCliente}"></td>
+			      
+			      <td th:each="d : ${lstDistrito}"
+			      th:if="${d.codigoDist}==${c.cod_dist}"
+			      th:text="${d.nomDist}"></td>
+			   
+			      <td th:text="${c.celularCliente}"></td>
+			       <td th:text="${c.fijoCliente}"></td>
+			       <td th:text="${c.mailCliente}"></td>
+			       <td th:text="${c.claveCliente}"></td>
+			      
+			       <td>
+			      		<form  action="/editarCli" method="POST">
+			      			<input type="hidden" name="codigoCliente" th:value="${c.codigoCliente}" />
+			      			<button type="submit"  class="btn btn-info" >Editar</button>
+			      		</form>
+			      </td>
+			     <td>	
+			   
+			      		<form  action="/cargarEliminarCliente" method="POST">
+			      			<input type="hidden" name="codigoCliente" th:value="${c.codigoCliente}" />
+			      			<button type="submit"  class="btn btn-danger" >Eliminar</button>
+			      		</form>
+			       </td>
+			    </tr>
+			   
+			  </tbody>
+		</table>
 	</div>
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		 <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
 	<script src="js/jquery-3.2.1.js"></script>
 	<script src="js/jquery.cycle.all.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -238,8 +228,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-			<script src="js/Productos.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+	<script src="js/Productos.js"></script>
 </body>
 
 </html>

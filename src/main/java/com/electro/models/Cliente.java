@@ -20,7 +20,9 @@ public class Cliente {
 	  private String apellidoCliente;
 	@Column(name="direc_cli")
 	  private String direccionCliente;
+	
 	  private int cod_dist;
+	  
 	@Column(name="cel_cli")
 	  private String celularCliente;
 	@Column(name="fijo_cli")

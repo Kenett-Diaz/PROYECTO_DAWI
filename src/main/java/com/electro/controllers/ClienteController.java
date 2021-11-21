@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.electro.models.Administrador;
 import com.electro.models.Cliente;
 import com.electro.repository.IClienteRepository;
+import com.electro.repository.IDistritoRepository;
 import com.electro.repository.IProductoRepository;
 
 @Controller
@@ -19,7 +21,8 @@ public class ClienteController {
 	private IClienteRepository repocli;
 	@Autowired
 	private IProductoRepository prod;
-	
+	@Autowired
+	private IDistritoRepository repodis;
 	//LOGIN DE ADMINISTRADORES
 	
 		@GetMapping("/login")
@@ -51,6 +54,76 @@ public class ClienteController {
 		
 		
 	}
-}
+
 	
- 	
+		@GetMapping("/cargarCli")
+		public String cargarCli(Model model) {
+			model.addAttribute("cliente", new Cliente());
+			model.addAttribute("lstCliente",repocli.findAll());
+			model.addAttribute("lstDistrito", repodis.findAll());
+			
+			return "mantenimientoCliente";
+		}
+		
+		@PostMapping("/grabarCli")
+		public String grabarCli(@ModelAttribute Cliente cliente, Model model) {
+			
+			repocli.save(cliente);	
+			model.addAttribute("lstDistrito", repodis.findAll());
+			model.addAttribute("lstCliente",repocli.findAll());
+			 model.addAttribute("mensaje","Registro/Actualizacón exitosa!");
+			return "listadoCliente";
+		}
+
+		@GetMapping("/listarCli")
+		public String listarCliente(Model model) {
+			model.addAttribute("lstCliente",repocli.findAll());
+			model.addAttribute("lstDistrito", repodis.findAll());
+			return "listadoCliente";
+		}
+		
+		
+		@PostMapping("/editarCli")
+		public String buscarCli(@ModelAttribute Cliente c, Model model) {
+
+		model.addAttribute("cliente", repocli.findById(c.getCodigoCliente()));
+		  model.addAttribute("lstCliente",repocli.findAll()); 
+			model.addAttribute("lstDistrito", repodis.findAll());
+			 
+			return "editarCliente";
+		}
+		
+		@PostMapping("/eliminarCli")
+		public String eliminarCli(@ModelAttribute Cliente c,Model model) {
+			
+			try {
+				 model.addAttribute("cliente", new Cliente());
+				   repocli.deleteById(c.getCodigoCliente());
+				   model.addAttribute("lstCliente",repocli.findAll()); 
+					model.addAttribute("lstDistrito", repodis.findAll());
+				   model.addAttribute("mensaje","Cliente Eliminado");
+				   
+					return "listadoCliente";
+					
+			} catch (Exception e) {
+				 model.addAttribute("cliente", repocli.findById(c.getCodigoCliente()));
+					model.addAttribute("lstDistrito", repodis.findAll());	  
+				 
+				   model.addAttribute("mensaje","Error de la llave foránea");
+				   
+					return "eliminarCliente";
+			}
+		 
+		} 
+		
+		@PostMapping("/cargarEliminarCliente")
+		public String cargarEliminarCliente(@ModelAttribute Cliente c,Model model) {
+			model.addAttribute("lstDistrito", repodis.findAll());
+		model.addAttribute("cliente", repocli.findById(c.getCodigoCliente()));
+		model.addAttribute("lstDistrito", repodis.findAll());	
+			return "eliminarCliente";
+		}
+		
+		
+	}
+
