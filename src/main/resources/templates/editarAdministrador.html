@@ -3,9 +3,9 @@
 <html xmlns:th="http://www.thymeleaf.org"> 	<!-- JSTL/ CustomTag-->
 
 <head> 
-  <title>Mantenimiento | Productos</title> 
+  <title>Mantenimiento | Administrador</title> 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 	 <link href="css/estiloProductos.css" rel="stylesheet" type="text/css">
 <link href="../font.css" rel="stylesheet" type="text/css">
@@ -15,9 +15,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
 </head>
 
-<body background="fondo/azul.jpg">  
-
-
+<body background="fondo/azul.jpg"> 
+	
 	<div id="contenedor">
 		<header>
 			<div id="baner" style="max-width: 100%; min-width: 100%">
@@ -132,7 +131,7 @@
 							
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-							<a class="dropdown-item" href="/login">Cliente</a>
+							<a class="dropdown-item" href="/login">Cliente</a> 
 							<a class="dropdown-item" href="/loginAdministrador">Administrador</a>
 
 
@@ -147,59 +146,85 @@
 		</nav>
 		<br>
 		<br>
+		
+	<!-- Adminstrador Actualizar -->
 
-			
-	<!-- Productos Registrar -->
-	<div style=" padding: 20px; width: 100%; color:#fff;" >
-		<br>
-		<br>
-	<h1 style="text-align: center; color: #fff; margin-top: 20px;" >Mantenimiento de productos</h1>
-	<form action="/grabarProd" method="post" th:object="${producto}">
-		  <div class="form-row">
+	<div style="margin-left: 5%; width: 90%;color:#fff;" >
+	 
+	<h1 style="text-align: center; margin-top: 20px;">Actualizar Administradores</h1>
+	
+	<form action="/grabarAdmi" method="post" th:object="${administrador}">
+<div class="form-row">
 		    <div class="form-group col-md-6"  style="color:#fff;">
-		      <label class="text-center">Codigo del producto</label>
-		      <input  th:field="*{codigoProducto}" class="form-control" placeholder="Ingrese código" required>
+		      <label class="text-center">Codigo del administrador</label>
+		      <input  th:field="*{codigoAdm}" class="form-control" placeholder="Ingrese código" required>
 		    </div>
 		    <div class="form-group col-md-6" style="color:#fff;">
 		      <label class="text-center" >Nombre</label>
-		      <input th:field="*{nombreProducto}" class="form-control" placeholder="Ingrese nombre" required>
+		      <input th:field="*{nombreAdm}" class="form-control" placeholder="Ingrese nombre" required>
+		    </div>
+		  	<div class="form-group col-md-6" style="color:#fff;">
+		      <label class="text-center" >Apellido Paterno</label>
+		      <input th:field="*{apePaternoAdm}" class="form-control" placeholder="Ingrese Apellido Paterno" required>
+		    </div>
+		    		  	<div class="form-group col-md-6" style="color:#fff;">
+		      <label class="text-center" >Apellido Materno</label>
+		      <input th:field="*{apeMaternoAdm}" class="form-control" placeholder="Ingrese Apellido Materno" required>
 		    </div>
 		    <div class="form-group col-md-12" style="color:#fff;">
-		      <label  class="text-center" >Descripcion</label>
-		      <input th:field="*{descipcionProducto}" class="form-control" placeholder="Ingrese descripcion" required>
+		      <label  class="text-center" >Dirección</label>
+		      <input th:field="*{direccionAdm}" class="form-control" placeholder="Ingrese Dirección" required>
+		    </div>
+		  	<div class="form-group col-md-12" style="color:#fff;">
+		      <label  class="text-center" >Email </label>
+		      <input th:field="*{correoAdm}" class="form-control" placeholder="Ingrese Email" required>
 		    </div>
 		  </div>	
 		  <div class="form-row">
 		    <div class="form-group col-md-4" style="color:#fff;">
-		      <label class="text-center" >Categoria</label>
-		     <select th:field="*{codigoCategoria}" class="form-control" required>
+		      <label class="text-center" >Distrito</label>
+		     <select th:field="*{cod_dist}" class="form-control" required>
 		        <option th:value="-1" th:text="Seleccione"></option>
-		        <option th:each="c : ${lstCategorias}" 
-		        th:value="${c.codigoCat}" th:text="${c.descCat}"></option> 	           
+		        <option th:each="c : ${lstDistrito}" 
+		        th:value="${c.codigoDist}" th:text="${c.nomDist}"></option> 	           
 		      </select>
 		    </div>
+		    
 		    <div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >Stock</label>
-		    <input th:field="*{stockProducto}" type="number"  min="1"
-		    class="form-control" placeholder="0" required>
+		    <label class="text-center" >Dni</label>
+		    <input th:field="*{dniAdm}" type="number"  min="1"
+		    class="form-control" placeholder="" required>
 		  </div>
 		  <div class="form-group col-md-4" style="color:#fff;">
-		    <label class="text-center" >Precio</label>
-		    <input th:field="*{precioProducto}" step="0.01" class="form-control" type="number"  placeholder="0.0" required>
+		    <label class="text-center" >N° Celular</label>
+		    <input th:field="*{celularAdm}" step="0.01" class="form-control" type="number"  placeholder="" required>
 		  </div>
+
+		  	<div class="form-group col-md-4" style="color:#fff;">
+		    <label class="text-center" >Sueldo trabajador</label>
+		    <input th:field="*{sueldoAdm}"  class="form-control" type="number"  placeholder="" required>
 		  </div>
-		 
-		 
-		  <button type="submit" class="btn btn-primary">Grabar</button> |
-		  <a href="/listarProd" class="btn btn-secondary">Listar</a> |	
-		  <a href="/listado_prod" target="_BLANK" class="btn btn-warning">PDF</a> |
-		  <a href="/reporte_grafico_prod" target="_BLANK" class="btn btn-warning">PDF Gráfico</a>
+		  		    <div class="form-group col-md-4" style="color:#fff;">
+		      <label class="text-center" >Cargo</label>
+		     <select th:field="*{ID_cargo}" class="form-control" required>
+		        <option th:value="-1" th:text="Seleccione"></option>
+		        <option th:each="c : ${lstCargo}" 
+		        th:value="${c.ID_cargo}" th:text="${c.NOM_CARGO}"></option> 	           
+		      </select>
+		    </div>
+		  </div>
+		  
+		  <br />
+		  <br />
+		 <button type="submit" class="btn btn-info">Actualizar</button> |
+		  
+		  <a href="/listarAdmi" class="btn btn-primary">Volver al Listado</a>
 	</form>
-	
-	
-						
-	</div>
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		 <!-- O
+		 
+		 ptional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
 	<script src="js/jquery-3.2.1.js"></script>
 	<script src="js/jquery.cycle.all.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -207,8 +232,9 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-			<script src="js/Productos.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+	<script src="js/Productos.js"></script>
+	
 </body>
 
 </html>

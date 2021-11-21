@@ -6,35 +6,34 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ADMINISTRADOR")
-
+@Table(name = "ADMINISTRADOR")
 public class Administrador {
 	@Id
-	@Column(name = "ID_admi")
+	@Column(name = "ID_admi", length = 6)
 	  private String codigoAdm; 		
-	@Column(name = "nom_admi")
+	@Column(name = "nom_admi", length = 45)
 	 private String nombreAdm; 		
-	@Column(name = "apePat_admi")
+	@Column(name = "apePat_admi", length = 25)
 	  private String apePaternoAdm; 	
-	@Column(name = "apeMat_admi")
+	@Column(name = "apeMat_admi", length = 20)
 	  private String apeMaternoAdm; 	
-	@Column(name = "DNI_admi")
+	@Column(name = "DNI_admi", length = 8)
 	  private String dniAdm; 	
 	@Column(name = "fechNac_admi")
 	  private String fechaNacAdm; 
-	@Column(name = "dir_admi")
+	@Column(name = "dir_admi", length = 100)
 	  private String direccionAdm; 
 	
 	  private int cod_dist; 
-	@Column(name = "fijo_admi")
+	@Column(name = "fijo_admi", length = 9)
 	  private String fijoAdm ;	
-	@Column(name = "cel_admi")
+	@Column(name = "cel_admi", length = 9)
 	  private String celularAdm ;	
-	@Column(name = "email_admi")
+	@Column(name = "email_admi", length = 80)
 	  private String correoAdm;
-	@Column(name = "usuario_admi")
+	@Column(name = "usuario_admi", length = 10)
 	  private String usrAdm;
-	@Column(name = "clave_admi")
+	@Column(name = "clave_admi", length = 15)
 	  private String claveAdm;
 	
 	  private String ID_cargo;	
