@@ -89,8 +89,9 @@ public class AdministradorController {
 	
 	
 	@PostMapping("/editarAdmi")
-	public String buscarProd(@ModelAttribute Administrador p, Model model) {
-		model.addAttribute("administrador", repoadm.findById(p.getCodigoAdm()));
+	public String buscarAdmi(@ModelAttribute Administrador a, Model model) {
+
+	model.addAttribute("administrador", repoadm.findById(a.getCodigoAdm()));
 		model.addAttribute("lstCargo", repoc.findAll());
 		model.addAttribute("lstDistrito", repodis.findAll());
 		 
@@ -98,19 +99,19 @@ public class AdministradorController {
 	}
 	
 	@PostMapping("/eliminarAdmi")
-	public String eliminarAdmi(@ModelAttribute Administrador p,Model model) {
+	public String eliminarAdmi(@ModelAttribute Administrador a,Model model) {
 		
 		try {
 			 model.addAttribute("administrador", new Administrador());
-			   repoadm.deleteById(p.getCodigoAdm());
-				model.addAttribute("lstDistrito", repodis.findAll());
-			   model.addAttribute("lstCargo", repoc.findAll());
+			   repoadm.deleteById(a.getCodigoAdm());
 			   model.addAttribute("lstAdministrador",repoadm.findAll()); 
+				model.addAttribute("lstDistrito", repodis.findAll());
+				model.addAttribute("lstCargo", repoc.findAll());
 			   model.addAttribute("mensaje","Administrador Eliminado");
 			   
 				return "listadoAdmi";
 		} catch (Exception e) {
-			  model.addAttribute("administrador", repoadm.findById(p.getCodigoAdm()));
+			 model.addAttribute("administrador", repoadm.findById(a.getCodigoAdm()));
 				model.addAttribute("lstDistrito", repodis.findAll());	  
 			   model.addAttribute("lstCargo", repoc.findAll());
 			 
@@ -122,9 +123,9 @@ public class AdministradorController {
 	} 
 	
 	@PostMapping("/cargarEliminarAdministrador")
-	public String cargarEliminar(@ModelAttribute Administrador p,Model model) {
+	public String cargarEliminarAdministrador(@ModelAttribute Administrador a,Model model) {
 		model.addAttribute("lstDistrito", repodis.findAll());
-		model.addAttribute("administrador", repoadm.findById(p.getCodigoAdm()));
+	model.addAttribute("administrador", repoadm.findById(a.getCodigoAdm()));
 		model.addAttribute("lstCargo", repoc.findAll());
 		
 		return "eliminarAdministrador";

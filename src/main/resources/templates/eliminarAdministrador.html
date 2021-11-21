@@ -1,13 +1,11 @@
 <!DOCTYPE HTML>
 
-<html xmlns:th="http://www.thymeleaf.org"> 	
+<html xmlns:th="http://www.thymeleaf.org"> 	<!-- JSTL/ CustomTag-->
 
 <head> 
-
-  <title>Listado de Administradores</title> 
-
+  <title>Mantenimiento | Administrador</title> 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 	 <link href="css/estiloProductos.css" rel="stylesheet" type="text/css">
 <link href="../font.css" rel="stylesheet" type="text/css">
@@ -146,69 +144,94 @@
 				</ul>
 			</div>
 		</nav>
-	</div>
 		<br>
 		<br>
 
 		
-	<!-- Productos Listar -->
-
-	<div style=" margin-left: 5%; width: 90%;">
-	
 			
-		<h1 style="text-align: center; color:#fff; margin-top: 20px;">Listado de Administradores</h1>
-		<br/>
-		<hr>
-		<!-- Alerta -->
-		<div class="alert alert-success  alert-dismissible show" role="alert"  th:if="${mensaje}">
+	<!-- Productos Eliminar -->
+	<div style="margin-left: 5%; width: 90%;color:#fff;">
+
+	<h1 style="text-align: center; margin-top: 20px;">Eliminar Administrador</h1>
+	<!-- Alerta -->
+		<div class="alert alert-danger  alert-dismissible show" role="alert"  th:if="${mensaje}">
 			  <strong  th:text="${mensaje}"></strong> 
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			    <span aria-hidden="true">&times;</span>
 			  </button>
 		</div>
-		<table class="table table-dark">
-			  <thead>
-			    <tr>	
-			      <th class="text-center" scope="col">Código</th>
-			      <th class="text-center" scope="col">Nombre</th>
-			      <th class="text-center" scope="col">Correo Admi</th>
-			      <th class="text-center" scope="col">Sueldo</th>
-			      <th class="text-center" scope="col">DNI</th>
-			      <th class="text-center" scope="col">Cargo</th>
-			      <th></th>
-			      <th></th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr th:each="p : ${lstAdministrador}"> 
-			   	<td th:text="${p.codigoAdm}"></td>
-			      <td th:text="${p.nombreAdm}"></td>
-			      <td th:text="${p.correoAdm}"></td>
-			      <td th:text="${p.sueldoAdm}"></td>
-			      <td th:text="${p.dniAdm}"></td>
-			      
-			      <td th:each="c : ${lstCargo}"
-			      th:if="${c.ID_cargo}==${p.ID_cargo}"
-			      th:text="${c.NOM_CARGO}"></td>
-			      <td>		   
-			      		<form  action="/editarAdmi" method="POST">
-			      			<input type="hidden" name="codigoAdm" th:value="${p.codigoAdm}" />
-			      			<button type="submit"  class="btn btn-info" >Editar</button>
-			      		</form>
-			      </td>
-			     <td>	
-			   
-			      		<form  action="/cargarEliminarAdministrador" method="POST">
-			      			<input type="hidden" name="codigoAdm" th:value="${p.codigoAdm}" />
-			      			<button type="submit"  class="btn btn-danger" >Eliminar</button>
-			      		</form>
-			       </td>
-			    </tr>
-			   
-			  </tbody>
-		</table>
+	<form action="/eliminarAdmi" method="post" th:object="${administrador}">
+				  <div class="form-row">
+		    <div class="form-group col-md-6"  style="color:#fff;">
+		      <label class="text-center">Codigo del administrador</label>
+		      <input  th:field="*{codigoAdm}" class="form-control" placeholder="Ingrese código" required>
+		    </div>
+		    <div class="form-group col-md-6" style="color:#fff;">
+		      <label class="text-center" >Nombre</label>
+		      <input th:field="*{nombreAdm}" class="form-control" placeholder="Ingrese nombre" required>
+		    </div>
+		  	<div class="form-group col-md-6" style="color:#fff;">
+		      <label class="text-center" >Apellido Paterno</label>
+		      <input th:field="*{apePaternoAdm}" class="form-control" placeholder="Ingrese Apellido Paterno" required>
+		    </div>
+		    		  	<div class="form-group col-md-6" style="color:#fff;">
+		      <label class="text-center" >Apellido Materno</label>
+		      <input th:field="*{apeMaternoAdm}" class="form-control" placeholder="Ingrese Apellido Materno" required>
+		    </div>
+		    <div class="form-group col-md-12" style="color:#fff;">
+		      <label  class="text-center" >Dirección</label>
+		      <input th:field="*{direccionAdm}" class="form-control" placeholder="Ingrese Dirección" required>
+		    </div>
+		  	<div class="form-group col-md-12" style="color:#fff;">
+		      <label  class="text-center" >Email </label>
+		      <input th:field="*{correoAdm}" class="form-control" placeholder="Ingrese Email" required>
+		    </div>
+		  </div>	
+		  <div class="form-row">
+		    <div class="form-group col-md-4" style="color:#fff;">
+		      <label class="text-center" >Distrito</label>
+		     <select th:field="*{cod_dist}" class="form-control" required>
+		        <option th:value="-1" th:text="Seleccione"></option>
+		        <option th:each="c : ${lstDistrito}" 
+		        th:value="${c.codigoDist}" th:text="${c.nomDist}"></option> 	           
+		      </select>
+		    </div>
+		    
+		    <div class="form-group col-md-4" style="color:#fff;">
+		    <label class="text-center" >Dni</label>
+		    <input th:field="*{dniAdm}" type="number"  min="1"
+		    class="form-control" placeholder="" required>
+		  </div>
+		  <div class="form-group col-md-4" style="color:#fff;">
+		    <label class="text-center" >N° Celular</label>
+		    <input th:field="*{celularAdm}" step="0.01" class="form-control" type="number"  placeholder="" required>
+		  </div>
+		  	<div class="form-group col-md-4" style="color:#fff;">
+		    <label class="text-center" >Sueldo trabajador</label>
+		    <input th:field="*{sueldoAdm}"  class="form-control" type="number"  placeholder="" required>
+		  </div>
+		  		    <div class="form-group col-md-4" style="color:#fff;">
+		      <label class="text-center" >Cargo</label>
+		     <select th:field="*{ID_cargo}" class="form-control" required>
+		        <option th:value="-1" th:text="Seleccione"></option>
+		        <option th:each="c : ${lstCargo}" 
+		        th:value="${c.ID_cargo}" th:text="${c.NOM_CARGO}"></option> 	           
+		      </select>
+		    </div>
+		  </div>
+		  
+		 <button type="submit" class="btn btn-danger">Eliminar</button> |
+		  
+		  <a href="/listarAdmi" class="btn btn-primary">Volver al Listado</a>
+		 
+		  	 
+	</form>
+		
+	     
+	
+
 	</div>
-		 <!-- Optional JavaScript -->
+	 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
 	<script src="js/jquery-3.2.1.js"></script>
@@ -220,6 +243,9 @@
 		crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
 	<script src="js/Productos.js"></script>
+			
+
 </body>
+	
 
 </html>
