@@ -201,7 +201,6 @@
 			      <th class="text-center" scope="col">Nº Celular</th>
 			      <th class="text-center" scope="col">Nº Fijo</th>
 			      <th class="text-center" scope="col">Email</th>
-			      <th class="text-center" scope="col">Contraseña</th>
 			      <th></th>
 			      <th></th>
 			    </tr>
@@ -220,9 +219,7 @@
 			   
 			      <td th:text="${c.celularCliente}"></td>
 			       <td th:text="${c.fijoCliente}"></td>
-			       <td th:text="${c.mailCliente}"></td>
-			       <td th:text="${c.claveCliente}"></td>
-			      
+			       <td th:text="${c.mailCliente}"></td>		      
 			       <td>
 			      		<form  action="/editarCli" method="POST">
 			      			<input type="hidden" name="codigoCliente" th:value="${c.codigoCliente}" />
@@ -230,7 +227,6 @@
 			      		</form>
 			      </td>
 			     <td>	
-			   
 			      		<form  action="/cargarEliminarCliente" method="POST">
 			      			<input type="hidden" name="codigoCliente" th:value="${c.codigoCliente}" />
 			      			<button type="submit"  class="btn btn-danger" >Eliminar</button>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.electro.models.Administrador;
 import com.electro.models.Cliente;
+import com.electro.models.Producto;
 import com.electro.repository.IClienteRepository;
 import com.electro.repository.IDistritoRepository;
 import com.electro.repository.IProductoRepository;
@@ -93,36 +94,44 @@ public class ClienteController {
 			return "editarCliente";
 		}
 		
+		
+		
 		@PostMapping("/eliminarCli")
 		public String eliminarCli(@ModelAttribute Cliente c,Model model) {
 			
 			try {
-				 model.addAttribute("cliente", new Cliente());
+				   model.addAttribute("cliente", new Cliente());
 				   repocli.deleteById(c.getCodigoCliente());
 				   model.addAttribute("lstCliente",repocli.findAll()); 
 					model.addAttribute("lstDistrito", repodis.findAll());
+					
 				   model.addAttribute("mensaje","Cliente Eliminado");
 				   
 					return "listadoCliente";
-					
 			} catch (Exception e) {
 				 model.addAttribute("cliente", repocli.findById(c.getCodigoCliente()));
 					model.addAttribute("lstDistrito", repodis.findAll());	  
+		
 				 
 				   model.addAttribute("mensaje","Error de la llave foránea");
 				   
-					return "eliminarCliente";
+					return "eliminarCli";
 			}
 		 
 		} 
 		
+			
 		@PostMapping("/cargarEliminarCliente")
 		public String cargarEliminarCliente(@ModelAttribute Cliente c,Model model) {
+			model.addAttribute("cliente", repocli.findById(c.getCodigoCliente()));
 			model.addAttribute("lstDistrito", repodis.findAll());
-		model.addAttribute("cliente", repocli.findById(c.getCodigoCliente()));
-		model.addAttribute("lstDistrito", repodis.findAll());	
-			return "eliminarCliente";
+		
+			
+			return "eliminarCli";
 		}
+
+	
+		
 		
 		
 	}
