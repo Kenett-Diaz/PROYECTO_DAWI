@@ -76,6 +76,7 @@ public class ClienteController {
 			return "listadoCliente";
 		}
 
+		//probvaando
 		@GetMapping("/listarCli")
 		public String listarCliente(Model model) {
 			model.addAttribute("lstCliente",repocli.findAll());
