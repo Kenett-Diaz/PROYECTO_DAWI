@@ -181,105 +181,80 @@
 		<br>
 
 		<section>
+		
+		
 			<div style="background-color: white; margin-left: 25%; width: 50%;">
 
 				<h1
 					style="margin-right: 200px; margin-bottom: 50px; font-family: Impact; font-size: 50px; color: #1F89E6; font-style: normal;">REGISTRO
 					DE CLIENTES</h1>
-				<form action="SCli" method="post">
-					<div style="margin: 10px; width: 200px; top: 0px; right: 0px;"
-						class="form-group">
-						<label for="exampleInputFecha">Nro. Documento : </label> <input
-							type="text" class="form-control" id="documento"
-							placeholder="(DNI./PTE.)" name="txtDocumento"
-							pattern="[A-Za-Z0-9]{8,10}" maxlength="10">
-					</div>
-
-					<div
-						style="margin: 10px; width: 250px; top: 0px; right: 0px; float: left"
-						class="form-group">
-						<label for="exampleInputFecha">Nombre(s) .</label> <input
-							type="text" class="form-control" id="nombre"
-							placeholder="Ingrese su Nombre" name="txtNombre" maxlength="30">
-					</div>
-
-					<div
-						style="margin: 10px; width: 250px; top: 0px; right: 0px; float: left"
-						class="form-group">
-						<label for="exampleInputFecha">Apellidos :</label> <input
-							type="text" class="form-control" id="apellidos"
-							placeholder="Ingrese su apellido" name="txtApellido"
-							maxlength="30">
-					</div>
-
-					<div
-						style="margin: 10px; width: 320px; top: 0px; right: 0px; float: left"
-						class="form-group">
-						<label for="exampleInputFecha">Dirección :</label> <input
-							type="text" class="form-control" id="fecha"
-							placeholder="Ingrese su direccion" name="txtDireccion"
-							maxlength="100">
-					</div>
-					<div
-						style="margin: 10px; width: 200px; top: 0px; right: 0px; float: left"
-						class="form-group">
-						<div class="col-auto my-1">
-							<label for="Distrito">Distrito :</label> <select
-								class="form-control" name="cboDistrito">
-								<ct:llenaDistritos />
-
-							</select>
-						</div>
-					</div>
-
-					<div
-						style="margin: 10px; width: 250px; top: 0px; right: 0px; float: left"
-						class="form-group">
-						<label for="Fijo">Teléfono Fijo :</label> <input type="number"
-							class="form-control" id="fijo" placeholder="Ingrese su telefono"
-							name="txtFijo" pattern="[0-9]{9}" maxlength="9">
-					</div>
-
-					<div
-						style="margin: 10px; width: 250px; top: 0px; right: 0px; float: left"
-						class="form-group">
-						<label for="exampleInputFecha">Celular :</label> <input
-							type="number" class="form-control" id="celular"
-							placeholder="Ingrese su Celular" name="txtCelular"
-							pattern="[0-9]{9}" maxlength="9">
-					</div>
-
-					<div
-						style="margin: 10px; width: 520px; top: 0px; right: 0px; float: left"
-						class="form-group">
-						<label for="exampleInputFecha">Correo personal :</label> <input
-							type="email" class="form-control" id="fecha"
-							placeholder="Ingrese su Correo" name="txtCorreo" maxlength="50">
-					</div>
-
-					<div
-						style="padding-bottom: 38px; margin: 10px; width: 520px; top: 0px; right: 0px; float: left"
-						class="form-group">
-						<label for="contraseña">Contraseña :</label> <input
-							type="password" class="form-control" id="clave"
-							placeholder="Ingrese su contraseña" name="txtClave"
-							maxlength="15">
-					</div>
-
-
-					<br>
-					<p>${mensaje}</p>
-
-					<div>
-							<button style="margin:10px 10px 50px 170px;width:200px;float:left" type="submit" class="btn btn-primary" name="btnes" value="rr">Registrar</button>
-						
-						 <br>
-   						 <p style="margin-left:70px;margin-top:530px">Si ya se encuentra registrado, clic <a href="/loginUsuairos">aquí</a> para Iniciar Sesión</p>
-    					 <br>
+			<form action="/grabarCliente" method="post" th:object="${cliente}">
+		  <div class="form-row">
+		    <div class="form-group col-md-4" >
+		      <label class="text-center">Codigo del cliente</label>
+		      <input  th:field="*{codigoCliente}" class="form-control" placeholder="Ingrese Código" required>
+		    </div>
+		    <div class="form-group col-md-4" >
+		    <label class="text-center" >Dni</label>
+		    <input th:field="*{dniCliente}" type="number"  min="1"
+		    class="form-control" placeholder="" required>
+		  </div>
+		    <div class="form-group col-md-4" >
+		      <label class="text-center" >Nombre</label>
+		      <input th:field="*{nombreCliente}" class="form-control" placeholder="Ingrese Nombre" required>
+		    </div>
+		  	<div class="form-group col-md-6">
+		      <label class="text-center" >Apellidos</label>
+		      <input th:field="*{apellidoCliente}" class="form-control" placeholder="Ingrese Apellidos" required>
+		    </div>
+		  
+		    <div class="form-group col-md-6" >
+		      <label  class="text-center" >Dirección</label>
+		      <input th:field="*{direccionCliente}" class="form-control" placeholder="Ingrese Dirección" required>
+		    </div>
+		  
+		  </div>	
+		  <div class="form-row">
+		    <div class="form-group col-md-4" >
+		      <label class="text-center" >Distrito</label>
+		     <select th:field="*{cod_dist}" class="form-control" required>
+		        <option th:value="-1" th:text="Seleccione"></option>
+		        <option th:each="c : ${lstDistrito}" 
+		        th:value="${c.codigoDist}" th:text="${c.nomDist}"></option> 	           
+		      </select>
+		    </div>
+		    
+		    
+		  <div class="form-group col-md-4" >
+		    <label class="text-center" >N° Celular</label>
+		    <input th:field="*{celularCliente}" step="0.01" class="form-control" type="number"  placeholder="" required>
+		  </div>
+		   <div class="form-group col-md-4" >
+		    <label class="text-center" >N° Telefono Fijo</label>
+		    <input th:field="*{fijoCliente}" step="0.01" class="form-control" type="number"  placeholder="" required>
+		  </div>
+		  	
+		  	<div class="form-group col-md-6" >
+		      <label  class="text-center" >Email </label>
+		      <input th:field="*{mailCliente}" class="form-control" placeholder="Ingrese Email" required>
+		    </div>
+		  
+		  <div class="form-group col-md-6 " >
+		      <label >Contraseña</label>
+		      <input type="password" th:field="*{claveCliente}" class="form-control" placeholder="Ingrese contraseña">
+		    </div>	
+			    
+		  </div>
+		 
+				<button style="margin:10px 10px 50px 170px;width:200px;float:left" type="submit" class="btn btn-primary" name="btnes" value="rr">Registrar</button>		
+				 <br>
+   				<p style="margin-left:70px;margin-top:530px">Si ya se encuentra registrado, clic <a href="/loginUsuairos">aquí</a> para Iniciar Sesión</p>
+    			<br>
 						
 					</div>
 
 				</form>
+				
 
 			</div>
 		</section>

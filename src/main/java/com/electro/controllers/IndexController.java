@@ -3,6 +3,12 @@ package com.electro.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.electro.models.Cliente;
+import com.electro.repository.IClienteRepository;
+import com.electro.repository.IDistritoRepository;
 import com.electro.repository.IProductoRepository;
 
 import org.springframework.ui.Model;
@@ -13,19 +19,10 @@ public class IndexController {
 	
 	@Autowired
 	private IProductoRepository prod;
-	
-	/*
-	 
-	 
-	 @GetMapping("/greeting")
-	public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-		model.addAttribute("name", name);
-		return "greeting";
-	}
-	 
-	 
-	 */
-	
+	@Autowired
+	private IClienteRepository repocli;
+ 	@Autowired
+	private IDistritoRepository repodis;
 
 	
 	/*para el index y su listado */
@@ -59,11 +56,23 @@ public class IndexController {
 	
 	//REGISTRO DE USUARIOS
 	@GetMapping("/registroCliente")
-	public String registroCliente() {
+	public String registroCliente(Model model) {
 		//logica 
-		
+		model.addAttribute("cliente", new Cliente());
+		model.addAttribute("lstCliente",repocli.findAll());
+		model.addAttribute("lstDistrito", repodis.findAll());
 		
 		return "registroCliente";
+	}
+	
+	@PostMapping("/grabarCliente")
+	public String grabarCliente(@ModelAttribute Cliente cliente, Model model) {
+		
+		repocli.save(cliente);	
+		model.addAttribute("lstDistrito", repodis.findAll());
+		model.addAttribute("lstCliente",repocli.findAll());
+		 model.addAttribute("mensaje","Registro del cliente exitoso!");
+		return "login";
 	}
 	
 	
