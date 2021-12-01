@@ -216,14 +216,14 @@
 			      <td>		   
 			      		<form  action="/editarProd" method="POST">
 			      			<input type="hidden" name="codigoProducto" th:value="${p.codigoProducto}" />
-			      			<button type="submit"  class="btn btn-info" >Editar</button>
+			      			<button type="submit"  class="btn btn-info fas fa-edit" ></button>
 			      		</form>
 			      </td>
 			     <td>	
 			   
 			      		<form  action="/cargarEliminar" method="POST">
 			      			<input type="hidden" name="codigoProducto" th:value="${p.codigoProducto}" />
-			      			<button type="submit"  class="btn btn-danger" >Eliminar</button>
+			      			<button type="submit"  class="btn btn-danger fas fa-trash-alt" ></button>
 			      		</form>
 			       </td>
 			    </tr>

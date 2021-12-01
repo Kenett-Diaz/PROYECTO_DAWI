@@ -201,9 +201,11 @@
 						<a href="#">
 							<img th:src="@{${'/imgPro/'+pro.codigoProducto+'.jpg'}}" height="150px" width="150px" alt="productos" >
 						</a>
-						<a th:text="${pro.nombreProducto}" style="background-color:#FFF8DC;padding:10px 20px;text-decoration:none;"
+					<a th:text="${pro.nombreProducto}" style="background-color:#FFF8DC;padding:10px 20px;text-decoration:none;"
 							href="#" ></a>
-						<p th:text="${pro.precioProducto}" style="color:darkblue;"  ></p>
+					 <p th:text="${pro.precioProducto}" style="color:darkblue;"  ></p>
+						
+							<button style="margin-bottom: 8px; cursor: pointer;" class="btn btn-secondary" disabled><i class="fas fa-shopping-cart"></i>  No disponible aún</button>
 					</figure>
 				</th:block>
 				</table>
