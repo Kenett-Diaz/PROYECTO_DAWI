@@ -181,49 +181,76 @@
 		<br>
 		<br>
 	<h1 style="text-align: center; color: #fff; margin-top: 20px;" >Mantenimiento de productos</h1>
-	<form action="/grabarProd" method="post" th:object="${producto}">
+	<form action="/grabarProd" method="post" th:object="${producto}" class="needs-validation" novalidate>
 		  <div class="form-row">
 		    <div class="form-group col-md-6"  style="color:#fff;">
 		      <label class="text-center">Codigo del producto</label>
 		      <input  th:field="*{codigoProducto}" class="form-control" placeholder="Ingrese código" required>
+		       <div class="invalid-feedback">Campo obligario*</div>
 		    </div>
 		    <div class="form-group col-md-6" style="color:#fff;">
 		      <label class="text-center" >Nombre</label>
 		      <input th:field="*{nombreProducto}" class="form-control" placeholder="Ingrese nombre" required>
+		       <div class="invalid-feedback">Campo obligario*</div>
 		    </div>
 		    <div class="form-group col-md-12" style="color:#fff;">
 		      <label  class="text-center" >Descripcion</label>
 		      <input th:field="*{descipcionProducto}" class="form-control" placeholder="Ingrese descripcion" required>
+		       <div class="invalid-feedback">Campo obligario*</div>
 		    </div>
 		  </div>	
 		  <div class="form-row">
 		    <div class="form-group col-md-4" style="color:#fff;">
 		      <label class="text-center" >Categoria</label>
 		     <select th:field="*{codigoCategoria}" class="form-control" required>
-		        <option th:value="-1" th:text="Seleccione"></option>
+		        <option th:value="-1" th:text="Seleccione" disabled></option>
 		        <option th:each="c : ${lstCategorias}" 
 		        th:value="${c.codigoCat}" th:text="${c.descCat}"></option> 	           
 		      </select>
+		       <div class="invalid-feedback">Campo obligario*</div>
 		    </div>
 		    <div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >Stock</label>
 		    <input th:field="*{stockProducto}" type="number"  min="1"
 		    class="form-control" placeholder="0" required>
+		     <div class="invalid-feedback">Campo obligario*</div>
 		  </div>
 		  <div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >Precio</label>
-		    <input th:field="*{precioProducto}" step="0.01" class="form-control" type="number"  placeholder="0.0" required>
+		    <input th:field="*{precioProducto}" step="0.01" class="form-control" type="number"  min="1.0" placeholder="0.0" required>
+		     <div class="invalid-feedback">Campo obligario*</div>
 		  </div>
 		  </div>
 		 
 		 
 		  <button type="submit" class="btn btn-primary">Grabar</button> |
-		  <a href="/listarProd" class="btn btn-secondary">Listar</a> |	
-		  <a href="/listado_prod" target="_BLANK" class="btn btn-warning">PDF</a> |
-		  <a href="/reporte_grafico_prod" target="_BLANK" class="btn btn-warning">PDF Gráfico</a>
+		  <a href="/listarProd" class="btn btn-secondary">Listar</a> 	
 	</form>
 	
+<script>
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
 	
+</script>	
+						
 						
 	</div>
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>

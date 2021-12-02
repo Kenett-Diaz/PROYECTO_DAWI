@@ -52,7 +52,7 @@ function direccionar(n){
 	
 	 //slider del dedo
     $('.scroll-up-btn').click(function(){
-        $('html').animate({scrollTop: 0});
+        $('html').animate({scrollTop: 20});
     });
     
 	//animar letra

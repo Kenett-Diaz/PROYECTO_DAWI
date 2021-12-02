@@ -50,7 +50,7 @@ public class ClienteController {
 		}else {
 			model.addAttribute("Usuario", clie);
 			model.addAttribute("productos", prod.findAll());
-			return "index";
+			return "indexCliente";
 		}
 		
 		

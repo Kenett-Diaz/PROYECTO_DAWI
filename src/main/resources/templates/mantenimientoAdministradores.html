@@ -179,79 +179,94 @@
 		<br>
 		<br>
 	<h1 style="text-align: center; color: #fff; margin-top: 20px;" >Mantenimiento de Administradores</h1>
-	<form action="/grabarAdmi" method="post" th:object="${administrador}">
+	<form action="/grabarAdmi" method="post" th:object="${administrador}" class="needs-validation" novalidate>
 		  <div class="form-row">
 		    <div class="form-group col-md-6"  style="color:#fff;">
 		      <label class="text-center">Codigo del administrador</label>
 		      <input  th:field="*{codigoAdm}" class="form-control" placeholder="Ingrese código" required>
+		      <div class="invalid-feedback">Campo obligario*</div>
 		    </div>
 		    <div class="form-group col-md-6" style="color:#fff;">
 		      <label class="text-center" >Nombre</label>
 		      <input th:field="*{nombreAdm}" class="form-control" placeholder="Ingrese nombre" required>
+		      <div class="invalid-feedback">Campo obligario*</div>
 		    </div>
 		  <div class="form-group col-md-6" style="color:#fff;">
 		      <label class="text-center" >Apellido Paterno</label>
 		      <input th:field="*{apePaternoAdm}" class="form-control" placeholder="Ingrese Apellido Paterno" required>
+		      <div class="invalid-feedback">Campo obligario*</div>
 		    </div>
 		  <div class="form-group col-md-6" style="color:#fff;">
 		      <label class="text-center" >Apellido Materno</label>
 		      <input th:field="*{apeMaternoAdm}" class="form-control" placeholder="Ingrese Apellido Materno" required>
+		      <div class="invalid-feedback">Campo obligario*</div>
 		    </div>
 		    <div class="form-group col-md-12" style="color:#fff;">
 		      <label  class="text-center" >Dirección</label>
 		      <input th:field="*{direccionAdm}" class="form-control" placeholder="Ingrese Dirección" required>
+		      <div class="invalid-feedback">Campo obligario*</div>
 		    </div>
 		  	<div class="form-group col-md-12" style="color:#fff;">
 		      <label  class="text-center" >Email </label>
 		      <input th:field="*{correoAdm}" class="form-control" placeholder="Ingrese Email" required>
+		      <div class="invalid-feedback">Campo obligario*</div>
 		    </div>
 		  </div>	
 		  <div class="form-row">
 		    <div class="form-group col-md-4" style="color:#fff;">
 		      <label class="text-center" >Distrito</label>
 		     <select th:field="*{cod_dist}" class="form-control" required>
-		        <option th:value="-1" th:text="Seleccione"></option>
+		        <option th:value="-1" th:text="Seleccione" disabled></option>
 		        <option th:each="c : ${lstDistrito}" 
 		        th:value="${c.codigoDist}" th:text="${c.nomDist}"></option> 	           
 		      </select>
+		      <div class="invalid-feedback">Campo obligario*</div>
 		    </div>
 		    
 		    <div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >Dni</label>
 		    <input th:field="*{dniAdm}" type="number"  min="1"
 		    class="form-control" placeholder="" required>
+		     <div class="invalid-feedback">Campo obligario*</div>
 		  </div>
 		  <div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >N° Celular</label>
 		    <input th:field="*{celularAdm}" step="0.01" class="form-control" type="number"  placeholder="" required>
+		     <div class="invalid-feedback">Campo obligario*</div>
 		  </div>
 		  		  <div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >Fecha Contrato</label>
 		    <input th:field="*{fechaContratoAdm}"  class="form-control" type="date"  placeholder="" required>
+		     <div class="invalid-feedback">Campo obligario*</div>
 		  </div>
 		  <div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >Fecha Nacimiento</label>
 		    <input th:field="*{fechaNacAdm}"  class="form-control" type="date"  placeholder="" required>
+		     <div class="invalid-feedback">Campo obligario*</div>
 		  </div>
 		  	<div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >Sueldo trabajador</label>
-		    <input th:field="*{sueldoAdm}"  class="form-control" type="number"  placeholder="" required>
+		    <input th:field="*{sueldoAdm}"  class="form-control" type="number"  placeholder="0.0" min="1.0"   required>
+		     <div class="invalid-feedback">Campo obligario*</div>
 		  </div>
 		  		    <div class="form-group col-md-4" style="color:#fff;">
 		      <label class="text-center" >Cargo</label>
 		     <select th:field="*{ID_cargo}" class="form-control" required>
-		        <option th:value="-1" th:text="Seleccione"></option>
+		        <option th:value="-1" th:text="Seleccione" disabled></option>
 		        <option th:each="c : ${lstCargo}" 
 		        th:value="${c.ID_cargo}" th:text="${c.NOM_CARGO}"></option> 	           
 		      </select>
+		       <div class="invalid-feedback">Campo obligario*</div>
 		    </div>
 		       	<div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >Usuario</label>
 		    <input th:field="*{usrAdm}"  class="form-control"   placeholder="" required>
+		     <div class="invalid-feedback">Campo obligario*</div>
 		  </div>
 		     	<div class="form-group col-md-4" style="color:#fff;">
 		    <label class="text-center" >Clave </label>
 		    <input th:field="*{claveAdm}"  class="form-control"   placeholder="" required>
+		     <div class="invalid-feedback">Campo obligario*</div>
 		  </div>
 		 
 		  </div>
@@ -261,7 +276,29 @@
 		 <a href="/listarAdmi" class="btn btn-secondary">Listar</a>		
 	</form>
 	
+		<script>
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
 	
+</script>	
 						
 	</div>
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>

@@ -177,19 +177,19 @@
 				<form action="/validarAdministrador" method="post" th:object="${administrador}">
 					<div style="margin-left:120px;width:400px; top: 0px; right:0px; " class="form-group">
 
-						<label for="exampleInputEmail1">Usuario :</label> 
+						<label for="exampleInputEmail1" style="margin-right: 300px;">Usuario :</label> 
 						<input type="text" th:field="*{usrAdm}" class="form-control" 
 							required id="exampleInputEmail1" name="txtCorreo" placeholder="Ingrese su nickname">
 					</div>
-					<div style="margin-left:120px;width:400px; top: 0px; right:0px; " class="form-group">
-						<label for="Password">Contraseña :</label>
+					<div style="margin-left:120px;width:400px; top: 0px; right:300px; " class="form-group">
+						<label for="Password"style="margin-right: 280px;">Contraseña :</label>
 						 <input type="password" class="form-control" th:field="*{claveAdm}"
 							required id="password" name="txtClave" placeholder="Password">
 					</div>
 					<br>
 					
 					<br>
-					<button style="margin:0px 0px 50px 280px;" type="submit" class="btn btn-primary" name="btnes"
+					<button style="margin:0px 0px 30px 20px;" type="submit" class="btn btn-primary" name="btnes"
 						value="v">Ingresar</button>
 
 					<br>
